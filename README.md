@@ -15,3 +15,4 @@ References:
 - [Effective Neovim: Instant IDE](https://youtu.be/stqUbv-5u2s?si=VZr16nnGmlm160GL)
 - [Tmux has forever changed the way I write code.](https://youtu.be/DzNmUNvnB04?si=yRdO38tunEpp41yO)
 - [How I Use Tmux With Neovim For An Awesome Dev Workflow On My Mac](https://youtu.be/U-omALWIBos?si=l9YqiBjJx35X92ii)
+- [https://github.com/catppuccin/catppuccin](https://github.com/catppuccin/catppuccin)
