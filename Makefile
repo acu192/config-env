@@ -18,6 +18,7 @@ nvim : you-must-be-root
 	mv nvim-linux64 /usr/local/etc/
 	rm -rf /usr/local/bin/nvim
 	ln -s /usr/local/etc/nvim-linux64/bin/nvim /usr/local/bin/nvim
+	ln -s /usr/local/etc/nvim-linux64/bin/nvim /usr/local/bin/vim
 	rm -rf nvim-linux64.tar.gz
 
 ripgrep : you-must-be-root
@@ -33,7 +34,8 @@ kickstartnvim :
 	rm -rf ~/.local/share/nvim/
 	rm -rf ~/.config/nvim
 	git clone https://github.com/nvim-lua/kickstart.nvim.git ~/.config/nvim
-	nvim
+	#nvim
+	nvim --headless "+Lazy! sync" +qa
 
 nvchad :
 	rm -rf ~/.local/share/nvim/
