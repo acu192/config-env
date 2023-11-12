@@ -46,3 +46,6 @@ require('lazy').setup({
 --   dark:  catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 -- See: https://github.com/catppuccin/nvim
 vim.cmd.colorscheme "catppuccin-mocha"
+
+-- Highlight on yank:
+require('hlonyank')
