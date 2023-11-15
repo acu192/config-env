@@ -11,16 +11,20 @@ vim.keymap.set({ 'n', 'v' }, ':', '<Nop>', {desc = 'Stop using this! Use <Space>
 vim.keymap.set('i', 'jj', '<ESC>', {desc = 'Mapped to <ESC>'})
 
 -- Other ways to save the buffer:
-vim.keymap.set('n', '<C-s>', ':w<CR>', {silent = true, desc = 'Save Buffer'})
-vim.keymap.set('i', '<C-s>', '<ESC>:w<CR>a', {silent = true, desc = 'Save Buffer'})
-vim.keymap.set('n', '<leader>s', ':w<CR>', {silent = true, desc = 'Save Buffer (also Ctrl+s)'})
-vim.keymap.set('i', '<leader>s', '<ESC>:w<CR>a', {silent = true, desc = 'Save Buffer (also Ctrl+s)'})
+local write_buffer = function()
+  vim.cmd('w')
+end
+vim.keymap.set({'n', 'i'}, '<C-s>', write_buffer, {silent = true, desc = 'Save Buffer'})
+vim.keymap.set({'n', 'i'}, '<leader>s', write_buffer, {silent = true, desc = 'Save Buffer (also Ctrl+s)'})
 
 -- Other ways to quit vim:
-vim.keymap.set('n', '<C-q>', ':q<CR>', {silent = true, desc = 'Quit Neovim'})
-vim.keymap.set('i', '<C-q>', '<ESC>:q<CR>', {silent = true, desc = 'Quit Neovim'})
-vim.keymap.set('n', '<leader>q', ':q<CR>', {silent = true, desc = 'Quit Neovim (also Ctrl+q)'})
-vim.keymap.set('i', '<leader>q', '<ESC>:q<CR>', {silent = true, desc = 'Quit Neovim (also Ctrl+q)'})
+local quit_twice = function()
+  -- We do it twice to avoid the annoying 'E173 (n more file(s) to edit)' error message.
+  vim.cmd('silent! q')
+  vim.cmd('silent! q')
+end
+vim.keymap.set({'n', 'i'}, '<C-q>', quit_twice, {silent = true, desc = 'Quit Neovim'})
+vim.keymap.set({'n', 'i'}, '<leader>q', quit_twice, {silent = true, desc = 'Quit Neovim (also Ctrl+q)'})
 
 -- Clear searches when you don't want to see them anymore:
 vim.keymap.set('n', '<leader>/', ':nohlsearch<CR>', {desc = 'Clear Active Search'})

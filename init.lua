@@ -31,7 +31,7 @@ require('lazy').setup({
   { 'folke/which-key.nvim', opts = {} },
 
   -- Theme & statusline:
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  require('catppuccin-config'),
   require('lualine-config'),
 
   -- Comment/uncomment lines with:
@@ -43,15 +43,12 @@ require('lazy').setup({
   -- Git status in the gutter:
   require('gitsigns-config'),
 
+  -- Treesitter for parsing and correct highlighting of various languages:
   require('treesitter-config'),
-}, {})
 
--- Now that catppuccin is install (above), we can set the color scheme to use it.
--- Catppuccin has four themes:
---   light: catppuccin-latte
---   dark:  catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
--- See: https://github.com/catppuccin/nvim
-vim.cmd.colorscheme "catppuccin-mocha"
+  -- Show open buffers as (what most people call) "tabs" at the top of nvim:
+  require('bufferline-config'),
+}, {})
 
 -- Highlight on yank:
 require('hlonyank')
