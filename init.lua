@@ -1,5 +1,5 @@
 -- Ryan's basic setup:
-require('basics')
+require('ryan-config')
 
 -- Highlight trailing whitespace:
 --require('whitespace')
