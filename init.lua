@@ -42,6 +42,8 @@ require('lazy').setup({
 
   -- Git status in the gutter:
   require('gitsigns-config'),
+
+  require('treesitter-config'),
 }, {})
 
 -- Now that catppuccin is install (above), we can set the color scheme to use it.
