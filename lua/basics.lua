@@ -13,14 +13,14 @@ vim.keymap.set('i', 'jj', '<ESC>', {desc = 'Mapped to <ESC>'})
 -- Other ways to save the buffer:
 vim.keymap.set('n', '<C-s>', ':w<CR>', {silent = true, desc = 'Save Buffer'})
 vim.keymap.set('i', '<C-s>', '<ESC>:w<CR>a', {silent = true, desc = 'Save Buffer'})
-vim.keymap.set('n', '<leader>s', ':w<CR>', {silent = true, desc = 'Save Buffer'})
-vim.keymap.set('i', '<leader>s', '<ESC>:w<CR>a', {silent = true, desc = 'Save Buffer'})
+vim.keymap.set('n', '<leader>s', ':w<CR>', {silent = true, desc = 'Save Buffer (also Ctrl+s)'})
+vim.keymap.set('i', '<leader>s', '<ESC>:w<CR>a', {silent = true, desc = 'Save Buffer (also Ctrl+s)'})
 
 -- Other ways to quit vim:
 vim.keymap.set('n', '<C-q>', ':q<CR>', {silent = true, desc = 'Quit Neovim'})
 vim.keymap.set('i', '<C-q>', '<ESC>:q<CR>', {silent = true, desc = 'Quit Neovim'})
-vim.keymap.set('n', '<leader>q', ':q<CR>', {silent = true, desc = 'Quit Neovim'})
-vim.keymap.set('i', '<leader>q', '<ESC>:q<CR>', {silent = true, desc = 'Quit Neovim'})
+vim.keymap.set('n', '<leader>q', ':q<CR>', {silent = true, desc = 'Quit Neovim (also Ctrl+q)'})
+vim.keymap.set('i', '<leader>q', '<ESC>:q<CR>', {silent = true, desc = 'Quit Neovim (also Ctrl+q)'})
 
 -- Clear searches when you don't want to see them anymore:
 vim.keymap.set('n', '<leader>/', ':nohlsearch<CR>', {desc = 'Clear Active Search'})
@@ -46,13 +46,13 @@ vim.keymap.set('n', 'Q', '@q', {desc = 'Run the macro stored in `q`. Hint: Use `
 -- Quick way to turn on/off spelling.
 -- Also turn it on by default.
 vim.keymap.set('n', '<F5>', ':set spell!<CR>', {silent = true, desc = 'Toggle Spell Checker'})
-vim.keymap.set('n', '<leader>5', ':set spell!<CR>', {silent = true, desc = 'Toggle Spell Checker'})
+vim.keymap.set('n', '<leader>5', ':set spell!<CR>', {silent = true, desc = 'Toggle Spell Checker (also <F5>)'})
 vim.o.spell = true
 
 -- Quick way to turn on/off wordwrap.
 -- Also configure how we want the defaults.
 vim.keymap.set('n', '<F6>', ':set wrap!<CR>', {silent = true, desc = 'Toggle Word Wrap'})
-vim.keymap.set('n', '<leader>6', ':set wrap!<CR>', {silent = true, desc = 'Toggle Word Wrap'})
+vim.keymap.set('n', '<leader>6', ':set wrap!<CR>', {silent = true, desc = 'Toggle Word Wrap (also <F6>)'})
 vim.o.wrap = false
 vim.o.breakindent = true
 vim.o.linebreak = true
