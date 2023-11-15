@@ -27,6 +27,7 @@ require('lazy').setup({
   'tpope/vim-sleuth',
 
   -- Show pending keybinds:
+  -- Bonus: it also shows spelling suggestions with `z=` when over a misspelled word!
   { 'folke/which-key.nvim', opts = {} },
 
   -- Theme & statusline:
@@ -38,6 +39,9 @@ require('lazy').setup({
   --   gc<motion>: toggle over the motion
   --   gcA: add comment to end of current line
   { 'numToStr/Comment.nvim', opts = {} },
+
+  -- Git status in the gutter:
+  require('gitsigns-config'),
 }, {})
 
 -- Now that catppuccin is install (above), we can set the color scheme to use it.

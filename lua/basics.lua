@@ -77,3 +77,12 @@ vim.o.number = true
 -- Those rules apply for manual search. The `*` and `#` command always ignore case.
 vim.o.ignorecase = true
 vim.o.smartcase = true
+
+-- Keep the sign column visible at all times.
+-- This is so that plugins like `gitsigns.nvim` don't
+-- cause the buffer view to jitter left/right as
+-- the first/last signs comes in/out.
+vim.o.signcolumn = 'yes'
+
+-- Quick way to visually select the entire file:
+vim.keymap.set('n', '<leader>G', 'GVgg', { silent = true, desc = 'Select Entire Buffer'})
