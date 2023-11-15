@@ -90,3 +90,13 @@ vim.o.signcolumn = 'yes'
 
 -- Quick way to visually select the entire file:
 vim.keymap.set('n', '<leader>G', 'GVgg', { silent = true, desc = 'Select Entire Buffer'})
+
+-- Highlight trailing whitespace:
+require('whitespace')
+
+-- Return to previous position in buffer:
+require('returntopos')
+
+-- Highlight on yank:
+-- (I decided to disable this because it was annoying me.)
+--require('hlonyank')

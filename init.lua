@@ -1,12 +1,6 @@
 -- Ryan's basic setup:
 require('ryan-config')
 
--- Highlight trailing whitespace:
---require('whitespace')
-
--- Return to previous position in buffer:
-require('returntopos')
-
 -- Bootstrap lazy.nvim as our package manager:
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -49,6 +43,3 @@ require('lazy').setup({
   -- Show open buffers as (what most people call) "tabs" at the top of nvim:
   require('bufferline-config'),
 }, {})
-
--- Highlight on yank:
-require('hlonyank')
