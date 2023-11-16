@@ -92,11 +92,11 @@ vim.o.signcolumn = 'yes'
 vim.keymap.set('n', '<leader>G', 'GVgg', { silent = true, desc = 'Select Entire Buffer'})
 
 -- Highlight trailing whitespace:
-require('whitespace')
+require('ryan/whitespace')
 
 -- Return to previous position in buffer:
-require('returntopos')
+require('ryan/returntopos')
 
 -- Highlight on yank:
 -- (I decided to disable this because it was annoying me.)
---require('hlonyank')
+--require('ryan/hlonyank')

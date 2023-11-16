@@ -1,5 +1,5 @@
 -- Ryan's basic setup:
-require('ryan-config')
+require('ryan')
 
 -- Bootstrap lazy.nvim as our package manager:
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -21,12 +21,13 @@ require('lazy').setup({
   'tpope/vim-sleuth',
 
   -- Show pending keybinds:
-  -- Bonus: it also shows spelling suggestions with `z=` when over a misspelled word!
+  --   Bonus: It also shows spelling suggestions
+  --          with `z=` when over a misspelled word!
   { 'folke/which-key.nvim', opts = {} },
 
   -- Theme & statusline:
-  require('catppuccin-config'),
-  require('lualine-config'),
+  require('package/catppuccin-config'),
+  require('package/lualine-config'),
 
   -- Comment/uncomment lines with:
   --   gcc: toggle current line
@@ -35,11 +36,11 @@ require('lazy').setup({
   { 'numToStr/Comment.nvim', opts = {} },
 
   -- Git status in the gutter:
-  require('gitsigns-config'),
+  require('package/gitsigns-config'),
 
   -- Treesitter for parsing and correct highlighting of various languages:
-  require('treesitter-config'),
+  require('package/treesitter-config'),
 
   -- Show open buffers as (what most people call) "tabs" at the top of nvim:
-  require('bufferline-config'),
+  require('package/bufferline-config'),
 }, {})
