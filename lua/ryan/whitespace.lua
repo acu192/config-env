@@ -1,7 +1,7 @@
 local hl = 'RedrawDebugComposed'  -- see all options with `:highlight`
 
 local re1 = [[/\s\+\%#\@<!$/]]
-local re2 = [[/\s\+$/]]           
+local re2 = [[/\s\+$/]]
 
 vim.cmd(string.format([[match %s %s]], hl, re1))
 

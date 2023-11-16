@@ -1,4 +1,7 @@
-# See: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
+--
+-- See: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
+--
+
 local parsers_to_install = {
   'bash',
   'c',
