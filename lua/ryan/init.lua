@@ -2,6 +2,10 @@
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
+-- Disable netrw:
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- The <Colon> is too hard to type. I'll remap <Space> for this.
 -- Also remap the <Colon> to <Nop> to try to train myself to stop using it!
 vim.keymap.set({ 'n', 'v' }, '<Space>', ':', {desc = 'Mapped to <Colon>'})

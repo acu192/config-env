@@ -43,4 +43,7 @@ require('lazy').setup({
 
   -- Show open buffers as (what most people call) "tabs" at the top of nvim:
   require('package/bufferline-config'),
+
+  -- A built-in file tree:
+  require('package/nvim-tree-config'),
 }, {})

@@ -45,7 +45,9 @@ return {
       lualine_z = {},
     },
     extensions = {
-      -- TODO: fugitive?, lazy?, mason?, nvim-tree?, quickfix?
+      'nvim-tree',
+      'lazy',
+      -- TODO: fugitive?, mason?, quickfix?
     },
   },
 }

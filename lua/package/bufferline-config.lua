@@ -3,13 +3,14 @@ return {
   dependencies = {
     'nvim-tree/nvim-web-devicons',
     'catppuccin',
+    'famiu/bufdelete.nvim',
   },
   opts = function()
     vim.keymap.set({'n', 'i', 'v'}, '<C-w>', function()
       if vim.fn.mode() ~= 'n' then
         return '<Esc>'
       else
-        vim.schedule(function() vim.cmd("silent! bdelete") end)
+        vim.schedule(function() vim.cmd("silent! Bdelete") end)
       end
     end, {desc = 'Close *Current* Buffer (IF SAVED)', expr=true})
 
@@ -29,7 +30,7 @@ return {
       vim.cmd("BufferLineCycleNext")
     end, {desc = 'Cycle to Next Buffer'})
 
-    vim.keymap.set('n', '<leader>w', function() vim.cmd("silent! bdelete") end, {desc = 'Close *Current* Buffer (IF SAVED)'})
+    vim.keymap.set('n', '<leader>w', function() vim.cmd("silent! Bdelete") end, {desc = 'Close *Current* Buffer (IF SAVED)'})
     vim.keymap.set('n', '<leader>b', function() vim.cmd("BufferLineCloseOthers") end, {desc = 'Close All *Other* Buffers (IF SAVED)'})
     vim.keymap.set('n', '<leader>n', function() vim.cmd("BufferLineCycleNext") end, {desc = 'Cycle to Next Buffer'})
 
@@ -39,23 +40,28 @@ return {
       options = {
         separator_style = 'slant',
         color_icons = false,
-        always_show_bufferline = false,              -- if false, the line hides when only one buffer is open
+        always_show_bufferline = true,               -- if false, the line hides when only one buffer is open
         show_buffer_close_icons = false,
-        close_command = "silent! bdelete %d",        -- can be a string | function | false
+        close_command = "silent! Bdelete %d",        -- can be a string | function | false
         left_mouse_command = "buffer %d",            -- can be a string | function | false
-        middle_mouse_command = "silent! bdelete %d", -- can be a string | function | false
+        middle_mouse_command = "silent! Bdelete %d", -- can be a string | function | false
         right_mouse_command = "vertical sbuffer %d", -- can be a string | function | false
         diagnostics = false,  -- TODO: "nvim_lsp" ?
         offsets = {
           {
-            filetype = "NvimTree",  -- TODO: does this work?
-            text = function()
-              return vim.fn.getcwd()
-            end,
-            highlight = "Directory",
-            text_align = "left"
+            filetype = "NvimTree",
+            --text = function()
+            --  return vim.fn.getcwd()
+            --end,
+            --highlight = "BufferLineOffsetSeparator",
+            --text_align = "left",
           },
         },
+        custom_filter = function(buf_number, buf_numbers)
+          if vim.bo[buf_number].filetype ~= "NvimTree" then
+            return true
+          end
+        end
       },
       highlights = require("catppuccin.groups.integrations.bufferline").get({
         styles = { "bold" },  -- none, any, or both of: "italic", "bold"
