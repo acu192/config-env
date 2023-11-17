@@ -28,10 +28,11 @@ ripgrep : you-must-be-root
 you-must-be-root :
 	@test $(shell id -u) = 0
 
-fonts : font-jetbrains font-ubuntu
-	# The JetBrains font seems to have the best usage/support among the community.
+fonts : font-jetbrains font-ubuntu font-meslo
+	# The JetBrains font seems to have the best usage/support among the nvim community.
 	# All options here:
 	#   https://github.com/ryanoasis/nerd-fonts/releases/tag/v3.0.2
+	# Meslo is popular in the zsh community, so I'll add that one too.
 
 font-jetbrains :
 	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip
@@ -51,4 +52,13 @@ font-ubuntu :
 	fc-cache -fv
 	rm -rf UbuntuMono.zip font/
 
-.PHONY : all nvim ripgrep you-must-be-root fonts font-jetbrains font-ubuntu
+font-meslo :
+	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip
+	unzip Meslo.zip -d font
+	# The following works on Ubuntu (not sure if it works on any other distros)...
+	mkdir -p ~/.local/share/fonts/
+	cp font/MesloLGSNerdFontMono-Regular.ttf ~/.local/share/fonts/
+	fc-cache -fv
+	rm -rf Meslo.zip font/
+
+.PHONY : all nvim ripgrep you-must-be-root fonts font-jetbrains font-ubuntu font-meslo
