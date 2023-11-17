@@ -41,12 +41,6 @@ vim.o.termguicolors = true
 -- This is the old vim behavior and I'm just used to it that way.
 vim.o.startofline = true
 
--- Easy moving between windows:
-vim.keymap.set('n', '<C-j>', '<C-w>j', {desc = 'Activate window DOWN'})
-vim.keymap.set('n', '<C-k>', '<C-w>k', {desc = 'Activate window UP'})
-vim.keymap.set('n', '<C-h>', '<C-w>h', {desc = 'Activate window LEFT'})
-vim.keymap.set('n', '<C-l>', '<C-w>l', {desc = 'Activate window RIGHT'})
-
 -- Use `Q` to run the macro stored in `q`.
 -- I.e. Record the macro with `qq`, the replay it with `Q`.
 vim.keymap.set('n', 'Q', '@q', {desc = 'Run the macro stored in `q`. Hint: Use `qq` to first record the macro.'})

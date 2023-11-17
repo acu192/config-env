@@ -20,6 +20,9 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically:
   'tpope/vim-sleuth',
 
+  -- Navagate windows with ctrl+hjkl:
+  { 'christoomey/vim-tmux-navigator', lazy = false },
+
   -- Show pending keybinds:
   --   Bonus: It also shows spelling suggestions
   --          with `z=` when over a misspelled word!
