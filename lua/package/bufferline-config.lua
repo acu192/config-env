@@ -32,7 +32,6 @@ return {
 
     vim.keymap.set('n', '<leader>w', function() vim.cmd("silent! Bdelete") end, {desc = 'Close *Current* Buffer (IF SAVED)'})
     vim.keymap.set('n', '<leader>b', function() vim.cmd("BufferLineCloseOthers") end, {desc = 'Close All *Other* Buffers (IF SAVED)'})
-    vim.keymap.set('n', '<leader>n', function() vim.cmd("BufferLineCycleNext") end, {desc = 'Cycle to Next Buffer'})
 
     --local mocha = require("catppuccin.palettes").get_palette("mocha")
     --print(vim.inspect(mocha))
