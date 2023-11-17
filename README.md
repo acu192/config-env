@@ -26,10 +26,6 @@ My mappings:
  - `<C-s>` or `<leader>s`: Save the buffer.
  - `<C-q>` or `<leader>q`: Close (quit) the window.
  - `<leader>/`: Clear the active search (to un-highlight them).
- - `<C-j>`: Activate the window DOWN.
- - `<C-k>`: Activate the window UP.
- - `<C-h>`: Activate the window LEFT.
- - `<C-l>`: Activate the window RIGHT.
  - `Q`: Replay the macro stored in the `q` macro. Hint: First use `qq` to record the macro.
  - `<F5>` or `<leader>5`: Toggle spell check (it's ON by default).
  - `<F6>` or `<leader>6`: Toggle word wrap (it's OFF by default).
@@ -95,3 +91,10 @@ nvim-tree/nvim-tree.lua:
    - `q`: Close the file tree
    - `R`: Refresh file tree
    - `?`: See help dialog
+
+christoomey/vim-tmux-navigator:
+ - `<C-j>`: Activate the window DOWN.
+ - `<C-k>`: Activate the window UP.
+ - `<C-h>`: Activate the window LEFT.
+ - `<C-l>`: Activate the window RIGHT.
+ - `<C-\>`: Activate previous window.
