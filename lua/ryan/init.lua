@@ -86,6 +86,21 @@ vim.o.smartcase = true
 -- the first/last signs comes in/out.
 vim.o.signcolumn = 'yes'
 
+-- Show a visual gutter at 80 characters.
+vim.o.colorcolumn = "80"
+
+-- Wait only 300ms until a partial command times out (default is 1000ms).
+vim.o.timeoutlen = 300
+
+-- In visual mode, have J and K move the selected lines up and down.
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+
+-- Keep cursor in the middle of the viewport as you to to next ('n') and
+-- previous ('N') search term.
+--vim.keymap.set('n', 'n', 'nzzzv')
+--vim.keymap.set('n', 'N', 'Nzzzv')
+
 -- Quick way to visually select the entire file:
 vim.keymap.set('n', '<leader>G', 'GVgg', { silent = true, desc = 'Select Entire Buffer'})
 

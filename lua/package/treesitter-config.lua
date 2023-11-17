@@ -36,10 +36,14 @@ return {
   config = function ()
     local configs = require("nvim-treesitter.configs")
     configs.setup({
-        ensure_installed = parsers_to_install,
-        sync_install = false,
-        highlight = { enable = true },
-        indent = { enable = true },
-      })
+      ensure_installed = parsers_to_install,
+      sync_install = false,
+      auto_install = false,
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
+      indent = { enable = true },
+    })
   end
 }
