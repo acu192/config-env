@@ -5,8 +5,6 @@ all :
 	@echo
 	@echo '=== run as your normal user ==='
 	@echo 'make fonts'
-	@echo 'make kickstartnvim'
-	@echo 'make nvchad'
 	@echo
 
 nvim : you-must-be-root
@@ -30,21 +28,8 @@ ripgrep : you-must-be-root
 you-must-be-root :
 	@test $(shell id -u) = 0
 
-kickstartnvim :
-	rm -rf ~/.local/share/nvim/
-	rm -rf ~/.config/nvim
-	git clone https://github.com/nvim-lua/kickstart.nvim.git ~/.config/nvim
-	#nvim
-	nvim --headless "+Lazy! sync" +qa
-
-nvchad :
-	rm -rf ~/.local/share/nvim/
-	rm -rf ~/.config/nvim
-	git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-	nvim
-
 fonts : font-jetbrains font-ubuntu
-	# The JetBrains font seems to have the best usage/support among the NvChad community.
+	# The JetBrains font seems to have the best usage/support among the community.
 	# All options here:
 	#   https://github.com/ryanoasis/nerd-fonts/releases/tag/v3.0.2
 
@@ -66,4 +51,4 @@ font-ubuntu :
 	fc-cache -fv
 	rm -rf UbuntuMono.zip font/
 
-.PHONY : all nvim ripgrep you-must-be-root kickstartnvim nvchad fonts font-jetbrains font-ubuntu
+.PHONY : all nvim ripgrep you-must-be-root fonts font-jetbrains font-ubuntu
