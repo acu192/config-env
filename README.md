@@ -29,6 +29,7 @@ My mappings:
  - `Q`: Replay the macro stored in the `q` macro. Hint: First use `qq` to record the macro.
  - `<F5>` or `<leader>5`: Toggle spell check (it's ON by default).
  - `<F6>` or `<leader>6`: Toggle word wrap (it's OFF by default).
+ - (in visual mode): `J` and `K` move the selected lines up and down.
  - `<leader>G`: Select the entire buffer.
 
 folke/which-key.nvim:
@@ -98,3 +99,9 @@ christoomey/vim-tmux-navigator:
  - `<C-h>`: Activate the window LEFT.
  - `<C-l>`: Activate the window RIGHT.
  - `<C-\>`: Activate previous window.
+
+TODO:
+ - lsp stuff ... rust, python, js, typescript
+ - quickfix
+ - telescope
+ - harpoon?
