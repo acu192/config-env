@@ -104,6 +104,16 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 -- Quick way to visually select the entire file:
 vim.keymap.set('n', '<leader>G', 'GVgg', { silent = true, desc = 'Select Entire Buffer'})
 
+-- Override the diagnostic icons:
+vim.fn.sign_define("DiagnosticSignError",
+  {texthl = "DiagnosticSignError", text = "󰅚", numhl = "DiagnosticSignError"})
+vim.fn.sign_define("DiagnosticSignWarn",
+  {texthl = "DiagnosticSignWarn", text = "󰀪", numhl = "DiagnosticSignWarn"})
+vim.fn.sign_define("DiagnosticSignInfo",
+  {texthl = "DiagnosticSignInfo", text = "󰋽", numhl = "DiagnosticSignInfo"})
+vim.fn.sign_define("DiagnosticSignHint",
+  {texthl = "DiagnosticSignHint", text = "󰌶", numhl = "DiagnosticSignHint"})
+
 -- Highlight trailing whitespace:
 require('ryan/whitespace')
 

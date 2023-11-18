@@ -114,12 +114,40 @@ return {
         enable = true,
       },
       git = {
+        enable = true,
+        show_on_dirs = true,
         show_on_open_dirs = false,
       },
       modified = {
         enable = true,
+        show_on_dirs = true,
         show_on_open_dirs = false,
       },
+      diagnostics = {
+        enable = true,
+        show_on_dirs = true,
+        show_on_open_dirs = false,
+        icons = {
+          error = "󰅚",
+          warning = "󰀪",
+          info = "󰋽",
+          hint = "󰌶",
+        },
+      },
     })
+
+    -- Patch the diagnostic icon colors that are shown in the signcolumn:
+    -- See:
+    --  - https://github.com/nvim-tree/nvim-tree.lua/blob/80cfeadf179d5cba76f0f502c71dbcff1b515cd8/lua/nvim-tree/colors.lua#L92-L95
+    --  - https://github.com/catppuccin/nvim/blob/a8dfb969e76d1a0752d98b5347be9ffb9bca9592/lua/catppuccin/groups/integrations/native_lsp.lua#L60-L63
+    local new_links = {
+      NvimTreeLspDiagnosticsError = "DiagnosticSignError",
+      NvimTreeLspDiagnosticsWarning = "DiagnosticSignWarn",
+      NvimTreeLspDiagnosticsInformation = "DiagnosticSignInfo",
+      NvimTreeLspDiagnosticsHint = "DiagnosticSignHint",
+    }
+    for k, d in pairs(new_links) do
+      vim.api.nvim_command("hi link " .. k .. " " .. d)
+    end
   end,
 }

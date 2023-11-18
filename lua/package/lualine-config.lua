@@ -16,7 +16,7 @@ local filename = {
 
 local diagnostics = {
   'diagnostics',
-  sources = { 'nvim_diagnostic', 'coc' },  -- TODO: add `nvim_lsp`
+  sources = { 'nvim_diagnostic' }, -- 'nvim_diagnostic' is a superset of 'nvim_lsp'
 }
 
 return {
@@ -48,6 +48,11 @@ return {
       'nvim-tree',
       'lazy',
       -- TODO: fugitive?, mason?, quickfix?
+    },
+    refresh = {
+      statusline = 250,
+      tabline = 250,
+      winbar = 250,
     },
   },
 }

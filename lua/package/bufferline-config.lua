@@ -45,7 +45,20 @@ return {
         left_mouse_command = "buffer %d",            -- can be a string | function | false
         middle_mouse_command = "silent! Bdelete %d", -- can be a string | function | false
         right_mouse_command = "vertical sbuffer %d", -- can be a string | function | false
-        diagnostics = false,  -- TODO: "nvim_lsp" ?
+        diagnostics = "nvim_lsp",
+        diagnostics_indicator = function(count, level)
+          local icon = ''
+          if level:match("error") then
+            icon = "󰅚"
+          elseif level:match("warn") then
+            icon = "󰀪"
+          elseif level:match("info") then
+            icon = "󰋽"
+          elseif level:match("hint") then
+            icon = "󰌶"
+          end
+          return icon
+        end,
         offsets = {
           {
             filetype = "NvimTree",
