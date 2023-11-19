@@ -136,6 +136,9 @@ vim.keymap.set("n", "<ESC>", function()
   end
 end)
 
+-- TODO: Easy quickfix navigation:
+-- ???
+
 -- Highlight trailing whitespace:
 require('ryan/whitespace')
 

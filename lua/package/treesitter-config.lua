@@ -44,10 +44,18 @@ return {
         additional_vim_regex_highlighting = false,
       },
       indent = { enable = true },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<C-space>",    -- ctrl+space
+          node_incremental = "<C-space>",  -- ctrl+space
+          scope_incremental = false,       -- disabled
+          node_decremental = "<C-a>",      -- ctrl+a
+        },
+      },
     })
 
     -- TODO: map keys for:
-    --   - prev/next function (maybe [f, ]f)
-    --   - hierarchical select
+    --   - prev/next function (maybe via `[f`, `]f`) with `nvim-treesitter/nvim-treesitter-textobjects`
   end
 }
