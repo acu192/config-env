@@ -3,10 +3,6 @@ return {
   dependencies = {
   },
   config = function()
-    -- Python
-    require('lspconfig').pyright.setup({})
-
-    -- Rust
-    require('lspconfig').rust_analyzer.setup({})
+    require('lsp-langs')
   end,
 }
