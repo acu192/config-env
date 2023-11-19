@@ -128,9 +128,11 @@ neovim/nvim-lspconfig:
    - `<leader>c`: [LSP] Do code action
    - `<leader>f`: [LSP] Format code
 
+hrsh7th/nvim-cmp:
+  - TODO: I'm not going to document this until I decide how I want it.
+
 TODO:
  - lsp stuff ... rust, python, js, typescript
-    - nvim-cmp ...
  - quickfix
  - telescope
  - harpoon?
