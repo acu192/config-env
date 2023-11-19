@@ -48,6 +48,10 @@ numToStr/Comment.nvim:
    - `gc` Toggle the region using linewise comment.
    - `gb` Toggle the region using blockwise comment.
 
+nvim-treesitter/nvim-treesitter:
+ - `<C-space>`: start incremental select & node increment
+ - `<C-a>`: node decrement
+
 lewis6991/gitsigns.nvim:
  - `<F1>` or `<leader>1`: Go to next git hunk.
  - `<F2>` or `<leader>2`: Go to previous git hunk.
