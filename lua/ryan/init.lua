@@ -114,6 +114,28 @@ vim.fn.sign_define("DiagnosticSignInfo",
 vim.fn.sign_define("DiagnosticSignHint",
   {texthl = "DiagnosticSignHint", text = "󰌶", numhl = "DiagnosticSignHint"})
 
+-- Set up diagnostics the way I like:
+vim.diagnostic.config({
+  virtual_text = {
+    source = 'if_many',
+    prefix = '▋', -- https://en.wikipedia.org/wiki/Block_Elements
+  },
+  severity_sort = true,
+  float = {  -- <-- floating window settings for when you do `vim.diagnostic.open_float()`
+    source = 'if_many',
+    severity_sort = true,
+  },
+})
+
+-- Close floating windows with <ESC>:
+vim.keymap.set("n", "<ESC>", function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if vim.api.nvim_win_get_config(win).relative == "win" then
+      vim.api.nvim_win_close(win, false)
+    end
+  end
+end)
+
 -- Highlight trailing whitespace:
 require('ryan/whitespace')
 
