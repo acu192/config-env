@@ -100,8 +100,33 @@ christoomey/vim-tmux-navigator:
  - `<C-l>`: Activate the window RIGHT.
  - `<C-\>`: Activate previous window.
 
+neovim/nvim-lspconfig:
+ - Things set by nvim's default LSP client ([ref](https://neovim.io/doc/user/lsp.html)):
+   - omnifunc ... which is, in insert mode, C-x + C-o: LSP-powered autocomplete
+   - tagfunc ... which is:
+     - C-]: jump to definition (LSP-powered)
+     - C-w + ]: split current window and go to definition in the new split (doesn't work since we use C-w elsewhere)
+     - C-w + }: make a preview window with the results of `:ptag` (doesn't work since we use C-w elsewhere)
+   - formatexpr ... which autoformats lines with `gq` (LSP-powered)
+   - `K` which looks up documentation (via the LSP) for the word under the cursor
+ - Things I set myself (mostly copied from the suggestions of [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig#suggested-configuration)):
+   - `<leader>d`: [DIAGNOSTICS] Open floating diagnostics window
+   - `[d`: [DIAGNOSTICS] Goto previous diagnostic issue
+   - `]d`: [DIAGNOSTICS] Goto next diagnostic issue
+   - `gD`: [LSP] Goto declaration
+   - `gd`: [LSP] Goto definition
+   - `gt`: [LSP] Goto type definition
+   - `gi`: [LSP] Goto implementation
+   - `gr`: [LSP] Goto references
+   - `K`: [LSP] Help: Hover
+   - `S`: [LSP] Help: Signature
+   - `<leader>r [LSP]`: Rename this symbol
+   - `<leader>c`: [LSP] Do code action
+   - `<leader>f`: [LSP] Format code
+
 TODO:
  - lsp stuff ... rust, python, js, typescript
+    - nvim-cmp ...
  - quickfix
  - telescope
  - harpoon?
