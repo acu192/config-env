@@ -49,4 +49,7 @@ require('lazy').setup({
 
   -- A built-in file tree:
   require('package/nvim-tree-config'),
+
+  -- LSP Configuration & Plugins:
+  require('package/lspconfig-config'),
 }, {})
