@@ -52,4 +52,7 @@ require('lazy').setup({
 
   -- LSP Configuration & Plugins:
   require('package/lspconfig-config'),
+
+  -- LSP-powered autocompletion:
+  require('package/cmp-config'),
 }, {})
