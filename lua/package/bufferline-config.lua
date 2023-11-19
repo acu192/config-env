@@ -1,3 +1,8 @@
+local ignore_filetypes = {
+  'NvimTree',
+  'qf',
+}
+
 return {
   'akinsho/bufferline.nvim',
   dependencies = {
@@ -70,9 +75,13 @@ return {
           },
         },
         custom_filter = function(buf_number, buf_numbers)
-          if vim.bo[buf_number].filetype ~= "NvimTree" then
-            return true
+          local ft = vim.bo[buf_number].filetype
+          for i, val in ipairs(ignore_filetypes) do
+            if val == ft then
+              return false
+            end
           end
+          return true
         end
       },
       highlights = require("catppuccin.groups.integrations.bufferline").get({

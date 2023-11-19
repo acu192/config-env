@@ -45,5 +45,9 @@ return {
       },
       indent = { enable = true },
     })
+
+    -- TODO: map keys for:
+    --   - prev/next function (maybe [f, ]f)
+    --   - hierarchical select
   end
 }
