@@ -2,8 +2,6 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {},
   config = function()
-    require('lsp-langs')
-
     -- Global mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
     vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, {desc = '[DIAG] Open Floating Diagnostic Window'})

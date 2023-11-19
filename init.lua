@@ -56,3 +56,6 @@ require('lazy').setup({
   -- LSP-powered autocompletion:
   require('package/cmp-config'),
 }, {})
+
+-- Enable certain language-specific LSPs:
+require('lsp-langs')
