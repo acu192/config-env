@@ -37,7 +37,7 @@ return {
     local configs = require("nvim-treesitter.configs")
     configs.setup({
       ensure_installed = parsers_to_install,
-      sync_install = false,
+      sync_install = true,
       auto_install = false,
       highlight = {
         enable = true,
