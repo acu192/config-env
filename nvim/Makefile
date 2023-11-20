@@ -73,7 +73,7 @@ nvim-env :
 	mkdir -p ~/.config
 	ln -s $(shell pwd) ~/.config/nvim
 	#nvim
-	nvim --headless "+Lazy! sync" +qa
-	#nvim --headless "+TSUpdate" +qa
+	nvim --headless "+Lazy! install" +qa
+	nvim --headless "+TSUpdate" +qa
 
 .PHONY : all nvim ripgrep you-must-be-root fonts font-jetbrains font-ubuntu font-meslo nvim-env
