@@ -1,4 +1,4 @@
-all : nvim tmux
+all : nvim tmux bash htop
 
 nvim :
 	cd nvim && sudo make ripgrep
@@ -8,4 +8,10 @@ nvim :
 tmux :
 	cd tmux && make tmux
 
-.PHONY : all nvim tmux
+bash :
+	cd bash && make
+
+htop :
+	cd htop && make
+
+.PHONY : all nvim tmux bash htop
