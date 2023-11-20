@@ -1,27 +1,20 @@
 # Ryan's Environment
 
-TBD. I'm still working to form this new environemnt that will be built around tmux and nvim.
+This repo defines Ryan's terminal environment. It contains:
+- a [Neovim](https://github.com/neovim/neovim) environment with tons of plugins and customization
+- a [tmux](https://github.com/tmux/tmux/wiki) environment with a few plugins and some customization
+- a (simple by today's standard) bash environment
+- a collection of scripts to help with random things
 
-### Context
+### Installation
 
-I've used my own configs of [bash](https://github.com/acu192/config-bash) & [vim](https://github.com/acu192/config-vim) (rather than IDEs) _very extensively_ for most projects over the past ~10 years. Back then (~10 years ago) I spent a lot of time configuring and getting good at those tools. It paid off, as I've been very efficient over the last ~9 years.
+TODO
 
-In Oct 2023 I came across [Neovim](https://github.com/neovim/neovim), and I also became enlighted to the power of configuring `tmux` (vanilla `tmux` is _okay_, but it turns out you can config `tmux` to be an absolute _monster_ of a tool). Also, arguably vanilla `bash` isn't great either (I have some custom config to `bash`, but it might be worth switching to a more modern shell at the same time that I dive into `tmux`).
+### Neovim Custom Keymaps
 
-So, I decided to spend some time devising a new set of tooling to form my new development environment. This repo is where I'll be doing that. Below are some references I'll be using (also the same references that inspired me to take this time and make these changes).
-
-References:
-- [0 to LSP : Neovim RC From Scratch](https://youtu.be/w7i4amO_zaE?si=hENKCR4plBRDahCa)
-- [Effective Neovim: Instant IDE](https://youtu.be/stqUbv-5u2s?si=VZr16nnGmlm160GL)
-- [Tmux has forever changed the way I write code.](https://youtu.be/DzNmUNvnB04?si=yRdO38tunEpp41yO)
-- [How I Use Tmux With Neovim For An Awesome Dev Workflow On My Mac](https://youtu.be/U-omALWIBos?si=l9YqiBjJx35X92ii)
-- [https://github.com/catppuccin/catppuccin](https://github.com/catppuccin/catppuccin)
-
-### Vim Custom Keybinds
-
-My mappings:
+**My mappings:**
  - My `<leader>` is `,`.
- - `<Space>`: mapped to `:` (and `:` is mapped to nothing so you stop the bad habit)
+ - `<Space>`: mapped to `:` (and `:` is mapped to _nothing_ so you stop the bad habit)
  - `jj`: mapped to `<Esc>`
  - `<C-s>` or `<leader>s`: Save the buffer.
  - `<C-q>` or `<leader>q`: Close (quit) the window.
@@ -32,11 +25,11 @@ My mappings:
  - (in visual mode): `J` and `K` move the selected lines up and down.
  - `<leader>G`: Select the entire buffer.
 
-folke/which-key.nvim:
+**folke/which-key.nvim:**
  - _upon any hesitation_: Show a little pop-up with suggestions to help you remember what you want.
  - `z=`: Fix spelling with the same little pop-up (rather than the default ugly full-screen behavior).
 
-numToStr/Comment.nvim:
+**numToStr/Comment.nvim:**
  - Normal Mode:
    - `gcc` Toggle the current line using linewise comment.
    - `gbc` Toggle the current line using blockwise comment.
@@ -48,24 +41,24 @@ numToStr/Comment.nvim:
    - `gc` Toggle the region using linewise comment.
    - `gb` Toggle the region using blockwise comment.
 
-nvim-treesitter/nvim-treesitter:
+**nvim-treesitter/nvim-treesitter:**
  - `<C-space>`: start incremental select & node increment
  - `<C-a>`: node decrement
 
-lewis6991/gitsigns.nvim:
+**lewis6991/gitsigns.nvim:**
  - `<F1>` or `<leader>1`: Go to next git hunk.
  - `<F2>` or `<leader>2`: Go to previous git hunk.
  - `<F3>` or `<leader>3`: Preview this git hunk's diff.
  - `<F4>` or `<leader>4`: Stage this git hunk (also works in visual mode to stage only a certain line(s)).
  - `<leader>B`: Toggle current-line git-blame viewer.
 
-akinsho/bufferline.nvim:
+**akinsho/bufferline.nvim:**
  - `<C-w>` or `<leader>w`: Close current buffer (IF SAVED; else ignore command).
  - `<C-b>` or `<leader>b`: Close all other buffers (IF SAVED; else they stay open).
  - `<Shift-Tab>`: Cycle to Previous Buffer
  - `<Tab>`: Cycle to Next Buffer
 
-nvim-tree/nvim-tree.lua:
+**nvim-tree/nvim-tree.lua:**
  - Anytime:
    - `<F7>` or `<leader>7`: Close file tree.
    - `<F8>` or `<leader>8`: Open file tree on current buffer's file, and focus it.
@@ -97,20 +90,20 @@ nvim-tree/nvim-tree.lua:
    - `R`: Refresh file tree
    - `?`: See help dialog
 
-christoomey/vim-tmux-navigator:
+**christoomey/vim-tmux-navigator:**
  - `<C-j>`: Activate the window DOWN.
  - `<C-k>`: Activate the window UP.
  - `<C-h>`: Activate the window LEFT.
  - `<C-l>`: Activate the window RIGHT.
  - `<C-\>`: Activate previous window.
 
-neovim/nvim-lspconfig:
+**neovim/nvim-lspconfig:**
  - Things set by nvim's default LSP client ([ref](https://neovim.io/doc/user/lsp.html)):
-   - omnifunc ... which is, in insert mode, C-x + C-o: LSP-powered autocomplete
+   - omnifunc ... which is, in insert mode, `C-x + C-o`: LSP-powered autocomplete
    - tagfunc ... which is:
-     - C-]: jump to definition (LSP-powered)
-     - C-w + ]: split current window and go to definition in the new split (doesn't work since we use C-w elsewhere)
-     - C-w + }: make a preview window with the results of `:ptag` (doesn't work since we use C-w elsewhere)
+     - `C-]`: jump to definition (LSP-powered)
+     - `C-w + ]`: split current window and go to definition in the new split (doesn't work since we use C-w elsewhere)
+     - `C-w + }`: make a preview window with the results of `:ptag` (doesn't work since we use C-w elsewhere)
    - formatexpr ... which autoformats lines with `gq` (LSP-powered)
    - `K` which looks up documentation (via the LSP) for the word under the cursor
  - Things I set myself (mostly copied from the suggestions of [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig#suggested-configuration)):
@@ -124,13 +117,13 @@ neovim/nvim-lspconfig:
    - `gr`: [LSP] Goto references
    - `K`: [LSP] Help: Hover
    - `S`: [LSP] Help: Signature
-   - `<leader>r [LSP]`: Rename this symbol
+   - `<leader>r`: [LSP] Rename this symbol
    - `<leader>c`: [LSP] Do code action
    - `<leader>f`: [LSP] Format code
 
-hrsh7th/nvim-cmp:
+**hrsh7th/nvim-cmp:**
  - No global or buffer-level mappings are created (as far as I know)
- - The plugin has these defaults for navagating the autocomplete floating window list:
+ - The plugin has these defaults for navigating the autocomplete floating window list:
    - `<Down>` and `<Up>`: go down and up in the list
    - `<C-n>` and `<C-p>`: go down and up in the list
    - `<C-y>`: confirm selection
@@ -138,10 +131,10 @@ hrsh7th/nvim-cmp:
  - I add a few more:
    - `<C-d>` and `<C-f>`: scroll floating window's docs
    - `<CR>`: confirm selection
-   - `<Tab>` and `<S-Tab>`: go down and up in the list; also navagate snippet jumps
+   - `<Tab>` and `<S-Tab>`: go down and up in the list; also navigate snippet jumps
    - `<C-space>`: complete!
 
-nvim-telescope/telescope.nvim:
+**nvim-telescope/telescope.nvim:**
  - `C-f`: Find Files
  - `C-g`: Find Files (in Git)
  - `<leader>g`: Grep Files
