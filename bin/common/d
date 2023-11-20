@@ -1,0 +1,35 @@
+#!/bin/bash
+
+IMAGE_SUFFIX="$1"
+shift
+
+if [ -z "$IMAGE_SUFFIX" ]
+then
+    echo 'usage: d <image_suffix>'
+    exit 1
+fi
+
+PROJNAME="$(basename $(pwd))-$IMAGE_SUFFIX"
+
+ALREADY_RUNNING=0
+
+for i in $(docker ps --format '{{.Names}}')
+do
+    if [ "$i" = "$PROJNAME" ]
+    then
+        ALREADY_RUNNING=1
+    fi
+done
+
+if [ "$ALREADY_RUNNING" = 0 ]
+then
+    exec docker run \
+        -it --rm \
+        --mount type=bind,source=$(pwd),target=/project \
+        --name "$PROJNAME" \
+        "$@" \
+        "ryan-docker-$IMAGE_SUFFIX:latest"
+else
+    exec docker exec -it "$PROJNAME" /bin/bash
+fi
+

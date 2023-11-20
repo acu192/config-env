@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Generically opens a file with the default GUI program.
+
+while [ $# -ge 1 ]
+do
+
+    FILE_PATH="$1"
+    FILE_TYPE="$(xdg-mime query filetype "$FILE_PATH")"
+    PROGRAM="$(xdg-mime query default "$FILE_TYPE")"
+
+    echo Opening \"$FILE_PATH\" of type \"$FILE_TYPE\" with \"$PROGRAM\"
+
+    xdg-open "$FILE_PATH" >/dev/null 2>/dev/null
+
+    shift
+
+done

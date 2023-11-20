@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Note: `gs` is a bash alias I have. That's why this script uses `which gs` below to circumvent the alias.
+
+if [ $# -lt 3 ]
+then
+    echo 'Usage: pdfcombine merged.pdf a.pdf b.pdf [c.pdf ...]'
+    exit 1
+fi
+
+OUTFILE="$1"
+
+shift
+
+`which gs` -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="$OUTFILE" "$@"
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# diff is called by git with 7 parameters:
+# path old-file old-hex old-mode new-file new-hex new-mode
+
+# tell git to use this script by running:
+#   git config --global diff.external `which mdiff_git`
+#   git config --global merge.tool /usr/bin/opendiff
+
+/usr/bin/opendiff "$2" "$5" | cat

@@ -1,0 +1,45 @@
+#!/bin/bash
+
+rhg st
+
+echo -n 'Ready to sync? [yes/no] '
+read isOK
+
+if [ "$isOK" = "yes" -o "$isOK" = "y" -o $isOK = "YES" -o $isOK = "Y" -o $isOK = "Yes" ]
+then
+    echo
+    echo 'Will synchronize...'
+    echo
+    rhg push
+    echo
+    echo '-------------------------------------'
+    echo
+    rhg pull
+    echo
+    echo '-------------------------------------'
+    echo
+    rhg up
+    echo
+    echo '-------------------------------------'
+    echo
+    rhg st
+else
+    echo -n 'Commit instead? [yes/no] '
+    read shouldCI
+
+    if [ "$shouldCI" = "yes" -o "$shouldCI" = "y" -o $shouldCI = "YES" -o $shouldCI = "Y" -o $shouldCI = "Yes" ]
+    then
+        echo
+        echo 'Will commit...'
+        echo
+        rhg addr
+        echo
+        echo '-------------------------------------'
+        echo
+        rhg ci
+    else
+        echo
+        echo 'Aborting...'
+        echo
+    fi
+fi

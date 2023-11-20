@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ "$(uname)" = "Darwin" ]
+then
+    LOG_FILE=/var/log/system.log
+elif [ "$(uname)" = "Linux" ]
+then
+    LOG_FILE=/var/log/auth.log
+else
+    echo "Unknown platform" 1>&2
+    exit 1
+fi
+
+cat "$LOG_FILE" | \
+    grep 'sshd' | \
+    grep 'Accepted ' | \
+    awk -F' ' '{ print $1, $2, $3 " -- " $7, $9, $11; }'

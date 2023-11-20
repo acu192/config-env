@@ -1,0 +1,52 @@
+#!/bin/bash
+
+if [[ $# = 0 ]]; then
+    echo 'Usage:   build <source files> [-o outputfilename] [-a arguments]' 1>&2
+    echo 'Example: build Main.cpp World.cpp -o worldSimulator -a earth' 1>&2
+    exit 1
+fi
+
+files=""
+outputfile="/tmp/build$$.out"
+arguments=""
+
+outputfilenext=0
+argumentsnext=0
+
+for i in $*
+do
+    case $i in
+        -o) outputfilenext=1;argumentsnext=0;;
+        -a) outputfilenext=0;argumentsnext=1;;
+        *)  if [[ $outputfilenext = 1 ]]; then
+                outputfile=$i
+                outputfilenext=0
+            else
+            if [[ $argumentsnext = 1 ]]; then
+                arguments+=$i
+                arguments+=" "
+            else
+                files+=$i
+                files+=" "
+            fi
+            fi;;
+    esac
+done
+
+function clean_exit
+{
+    echo "Killing program with id $PROG_PID..." 1>&2
+    kill -SIGTERM "$PROG_PID"
+}
+
+echo 'Compiling...' 1>&2
+if g++ -I ~/Desktop/rholib -O0 -ansi $files -o $outputfile -lpcap -lnet -pthread; then
+    echo 'Running...' 1>&2
+    $outputfile $arguments &
+    PROG_PID="$!"
+    trap clean_exit SIGINT
+    wait
+    rm $outputfile
+else
+    exit 1
+fi

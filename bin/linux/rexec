@@ -1,0 +1,36 @@
+#!/bin/bash
+
+
+# Executes a local script on a remote machine.
+
+# (The path to the local script must not contain spaces!)
+# (Also, arguments to the script must not contain spaces.
+#  They are not preserved by `ssh`, which is stupid.)
+
+
+if [ $# -lt 2 ]
+then
+    echo "Usage: $(basename "$0") <server_ssh_url> <local_script_to_run> [script_params]" 1>&2
+    exit 1
+fi
+
+SERVER_URL="$1"
+shift
+SCRIPT_PATH="$(which "$1")"
+shift   # "$@" will now contain the remaining arguments.
+
+REMOTE_SCRIPT_PATH="/tmp/$(basename "$SCRIPT_PATH")_$$"
+
+if [ ! -f "$SCRIPT_PATH" ] || [ ! -x "$SCRIPT_PATH" ]
+then
+    echo "No local executable file named '$SCRIPT_PATH'" 1>&2
+    exit 2
+fi
+
+if  ! scp "$SCRIPT_PATH" "$SERVER_URL":"$REMOTE_SCRIPT_PATH" >/dev/null || \
+    ! ssh "$SERVER_URL" "$REMOTE_SCRIPT_PATH" "$@" || \
+    ! ssh "$SERVER_URL" rm "$REMOTE_SCRIPT_PATH"
+then
+    echo "Coudn't ssh to $SERVER_URL or the remote command exited with an error." 1>&2
+    exit 3
+fi

@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+
+"""
+Creates thumbnails of images passed as arguments to this command.
+
+Also renameds the original image.
+"""
+
+import os
+import argparse
+import subprocess
+
+
+SIZES = [200, 400, 800, 1600, 3200]
+
+
+def _add_size_spec(fullpath, spec_str):
+    base, ext = os.path.splitext(fullpath)
+    return "{}{}{}".format(base, spec_str, ext.lower())
+
+
+def _move_to_full(fullpath):
+    new_fullpath = _add_size_spec(fullpath, '__full')
+    os.rename(fullpath, new_fullpath)
+    print("Renamed:", new_fullpath)
+    return new_fullpath
+
+
+def _create_sizes(fullpath):
+    files = [fullpath]
+    for s in SIZES:
+        basedir, filename = os.path.split(fullpath)
+        s_filename = filename.replace('__full', '__{}w'.format(s))
+        s_fullpath = os.path.join(basedir, s_filename)
+        # See: http://www.imagemagick.org/Usage/resize/
+        # The following command resizes the image (downward only!) to be `s` in width.
+        # The `>` means to resize downward only.
+        # The format is `width x height` but we leave off the height, so it is not considered.
+        subprocess.run(['convert', fullpath, '-auto-orient', '-resize', '{}x>'.format(s), s_fullpath])
+        print("Wrote file:", s_fullpath)
+        files.append(s_fullpath)
+    return files
+
+
+def process_image(fullpath):
+    fullpath = _move_to_full(fullpath)
+    return _create_sizes(fullpath)
+
+
+if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser(description="Create thumbnail images.")
+    parser.add_argument('images', metavar='IMAGE', nargs='+',
+                        help='image files to process')
+    args = parser.parse_args()
+
+    for image in args.images:
+        process_image(image)
+

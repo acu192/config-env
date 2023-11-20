@@ -1,0 +1,238 @@
+#!/bin/bash
+
+##############################################################################
+#
+# ***************
+# **** USAGE ****
+# ***************
+#
+# This script does "smart" backups of remote or local files. It is
+# intended to be called periodically throughout the day (usually by cron).
+#
+# How does it do a "smart" backup?
+#
+#      It does incremental, rolling backups. It keeps the last 7 days and
+#      the last 4 weeks. It also does monthly backups and keeps those
+#      around forever. It also keeps a 'most recent' backup, which is:
+#          1) convenient for you, and
+#          2) used as a basis for the next backup (so that you
+#             don't waste disk space or network bandwidth).
+#
+# How do I access the backups?
+#
+#      When you call this script, you pass a "root backup path".
+#      This script will manage the directory at that path for you.
+#      It will create and maintain four subdirectories:
+#                 "daily", "weekly", "monthly", "most_recent"
+#      To access your backups, simply navigate to those subdirectories
+#      and have a look around.
+#
+# Can this be used to backup several different servers?
+#
+#      Yes! It is recommended you use a separate "root backup directory"
+#      for each server. That way each server gets its own daily, weekly,
+#      and monthly backup locations. See the scripts parameters for how
+#      to make that work. Also look at the examples below.
+#
+# ********************
+# **** PARAMETERS ****
+# ********************
+#
+# $1 == Root backup directory.
+#       This is usually something like: "/backup/<servername>"
+#
+# $2 == Remote (or local) location to backup.
+#       For a remote location, use `scp' style urls.
+#             For example, "ryan@charles:projects"
+#
+# $* == Additional remote (or local) locations to backup.
+#
+# *******************
+# **** EXAMPLES *****
+# *******************
+#
+# ./backup_go '/backup/my-server'   \
+#             'root@my-server.com:/var/logs' 'root@my-server.com:user_files'
+#
+# ./backup_go '/backup/my-other-server'   \
+#             'root@10.2.0.1:/var/logs' 'root@10.2.0.1:user_files'
+#
+##############################################################################
+
+#
+# The verbosity level.
+# 0 == no printing
+# 1 == some
+# 2 == a lot
+#
+CURR_VERBOSITY_LEVEL=1
+
+#
+# Some useful functions...
+#
+
+function error
+{
+    echo "ERROR: $1" 1>&2
+    exit 1
+}
+
+function check_backup_root_dir
+{
+    if [ -z "$1" ]
+    then
+        error "You must specify a root backup location."
+    fi
+    if [ ! -d "$1" ]
+    then
+        error "$1 must be a directory in order to use it as the \
+            root backup location."
+    fi
+}
+
+function ensure_dir_exists
+{
+    if [ ! -e "$1" ]
+    then
+        mkdir -p "$1" || error "Cannot create directory at: $1"
+        touch -t 198901301729 "$1"
+    elif [ ! -d "$1" ]
+    then
+        error "$1 exists but is not a directory!"
+    fi
+}
+
+function verbose_print
+{
+    REQUIRED_VERBOSITY_LEVEL="$1"
+    shift
+    PRINT_TEXT="$*"
+
+    if [ "$REQUIRED_VERBOSITY_LEVEL" -le "$CURR_VERBOSITY_LEVEL" ]
+    then
+        echo "$PRINT_TEXT"
+    fi
+}
+
+# Misc variables we'll need later.
+SCRIPT_DIR="$(dirname "$0")"
+BACKUP_SUCESSFULL=0
+
+# Get and check the root backup dir.
+BACKUP_ROOT_PATH="$1"
+shift
+check_backup_root_dir "$BACKUP_ROOT_PATH"
+
+# Make sure all subdirectories exist.
+DAILY_PATH="$BACKUP_ROOT_PATH"/daily
+WEEKLY_PATH="$BACKUP_ROOT_PATH"/weekly
+MONTHLY_PATH="$BACKUP_ROOT_PATH"/monthly
+MOST_RECENT_PATH="$BACKUP_ROOT_PATH"/most_recent
+ensure_dir_exists "$DAILY_PATH"
+ensure_dir_exists "$WEEKLY_PATH"
+ensure_dir_exists "$MONTHLY_PATH"
+ensure_dir_exists "$MOST_RECENT_PATH"
+
+#
+# If the lock file exists, then this script is already running!
+# That means that we should bail-out.
+#
+# Note that this isn't race-free, but this script is generally called
+# by `cron', so it'll be okay.
+#
+LOCK_FILE="$SCRIPT_DIR/LOCK_FILE"
+if [ -a "$LOCK_FILE" ]
+then
+    verbose_print 2 \
+        "Another instance of this script is already running. Exiting..."
+    exit
+fi
+touch "$LOCK_FILE"
+
+# See if a daily backup is needed.
+DAY_OF_WEEK_NUM=$(date +"%w")
+DAY_OF_WEEK_STR=$(date +"%A")
+DAY_UNIQUE_ID=$(date +"%Y-%j")
+ON_RECORD_DAY_UNIQUE_ID=$(date --reference "$MOST_RECENT_PATH" +"%Y-%j")
+[ "$DAY_UNIQUE_ID" != "$ON_RECORD_DAY_UNIQUE_ID" ]
+NEEDS_DAY_BACKUP=$?
+
+# See if a weekly backup is needed.
+WEEK_NUM=$(date +"%U")
+WEEK_UNIQUE_ID=$(date +"%Y-%U")
+ON_RECORD_WEEK_UNIQUE_ID=$(date --reference "$MOST_RECENT_PATH" +"%Y-%U")
+[ "$WEEK_UNIQUE_ID" != "$ON_RECORD_WEEK_UNIQUE_ID" ]
+NEEDS_WEEK_BACKUP=$?
+
+# See if a monthly backup is needed.
+MONTH_NUM=$(date +"%m")
+MONTH_STR=$(date +"%B")
+MONTH_UNIQUE_ID=$(date +"%Y-%m")
+ON_RECORD_MONTH_UNIQUE_ID=$(date --reference "$MOST_RECENT_PATH" +"%Y-%m")
+[ "$MONTH_UNIQUE_ID" != "$ON_RECORD_MONTH_UNIQUE_ID" ]
+NEEDS_MONTH_BACKUP=$?
+
+# If any backups are needed, do one backup to the $MOST_RECENT_PATH directory.
+if [ $NEEDS_DAY_BACKUP -eq 0 ] ||
+   [ $NEEDS_WEEK_BACKUP -eq 0 ] ||
+   [ $NEEDS_MONTH_BACKUP -eq 0 ]
+then
+    verbose_print 2 "A backup is needed!"
+
+    RSYNC_STDOUT_LOG_PATH="$MOST_RECENT_PATH"/rsync_stdout.log
+    RSYNC_STDERR_LOG_PATH="$MOST_RECENT_PATH"/rsync_stderr.log
+
+    echo > "$RSYNC_STDOUT_LOG_PATH"
+    echo > "$RSYNC_STDERR_LOG_PATH"
+
+    BACKUP_SUCESSFULL=1
+
+    for LOCATION in "$@"
+    do
+        if rsync -avz --delete -e ssh "$LOCATION" "$MOST_RECENT_PATH" \
+            1>>"$RSYNC_STDOUT_LOG_PATH" 2>>"$RSYNC_STDERR_LOG_PATH"
+        then
+            touch "$MOST_RECENT_PATH"
+            verbose_print 2 "Successfully backed up: $LOCATION"
+        else
+            BACKUP_SUCESSFULL=0
+            verbose_print 2 "Failed to backup: $LOCATION"
+        fi
+    done
+else
+    verbose_print 2 "A backup is not needed."
+fi
+
+# Copy the new backup to all the places it should go.
+if [ $NEEDS_DAY_BACKUP -eq 0 ] && [ $BACKUP_SUCESSFULL -eq 1 ]
+then
+    DIR_NAME="$DAY_OF_WEEK_NUM"-"$DAY_OF_WEEK_STR"
+    FULL_BACKUP_PATH="$DAILY_PATH"/"$DIR_NAME"
+    rm -rf "$FULL_BACKUP_PATH"
+    cp -al "$MOST_RECENT_PATH" "$FULL_BACKUP_PATH"
+    verbose_print 1 "Daily backup successful!"
+    verbose_print 1 "See: $FULL_BACKUP_PATH"
+fi
+
+if [ $NEEDS_WEEK_BACKUP -eq 0 ] && [ $BACKUP_SUCESSFULL -eq 1 ]
+then
+    DIR_NAME="Week-$WEEK_NUM"
+    FULL_BACKUP_PATH="$WEEKLY_PATH"/"$DIR_NAME"
+    rm -rf "$FULL_BACKUP_PATH"
+    cp -al "$MOST_RECENT_PATH" "$FULL_BACKUP_PATH"
+    verbose_print 1 "Weekly backup successful!"
+    verbose_print 1 "See: $FULL_BACKUP_PATH"
+fi
+
+if [ $NEEDS_MONTH_BACKUP -eq 0 ] && [ $BACKUP_SUCESSFULL -eq 1 ]
+then
+    DIR_NAME="$MONTH_UNIQUE_ID"
+    FULL_BACKUP_PATH="$MONTHLY_PATH"/"$DIR_NAME"
+    rm -rf "$FULL_BACKUP_PATH"
+    cp -al "$MOST_RECENT_PATH" "$FULL_BACKUP_PATH"
+    verbose_print 1 "Monthly backup successful!"
+    verbose_print 1 "See: $FULL_BACKUP_PATH"
+fi
+
+# Finally, we're finished so we can delete the lock file.
+rm "$LOCK_FILE"

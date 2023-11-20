@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]
+then
+    echo 'Error: no files specified' 1>&2
+    exit 1
+fi
+
+enscript -2rh --file-align=2 -M Letter -T4 --word-wrap --highlight --line-numbers -p - "$@" | ps2pdf - code.pdf
+
+echo
+echo 'Finished! (see code.pdf)'

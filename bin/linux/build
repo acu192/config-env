@@ -1,0 +1,101 @@
+#!/bin/bash
+
+#############################################################################
+#
+# This script makes it easy to compile and run small C++ programs from
+# the command line. You tell it which files need to be compiled, and it
+# will compile them into a program. On successful compile it will then
+# execute the program.
+#
+# !!!! SCRIPT PARAMETERS !!!!
+#
+#     Required:
+#
+#         Pass first all the C++ source files that need to be compiled.
+#
+#     Optional:
+#
+#         You may pass a '-o' followed by a path to where the compiled
+#         program will be created. If this option is not specified,
+#         the program will be created in the /tmp directory.
+#
+#         You may pass a '-a' followed by arguments that you want passed
+#         to the compiled program when launched.
+#
+# !!!! EXAMPLES !!!!
+#
+#     build test.cpp
+#
+#     build test.cpp other_file.cpp
+#
+#     build test.cpp other_file.cpp -o my_awsome_test_program.out
+#
+#     build prog.cpp -a "some argument that will be passed to the new program"
+#
+#     build prog.cpp < some_file_that_will_be_piped_into_the_new_program.txt
+#
+#     build prog.cpp -o prog.out -a arg1 arg2 < input.txt
+#
+# !!!! OTHER NOTES !!!!
+#
+#     This script assumes that libpcap-dev and libnet1-dev are installed.
+#
+# !!!! KNOWN BUGS !!!!
+#
+#     This script doesn't support spaces in the name of the files to compile.
+#     It *does* support spaces in the '-o' argument and the '-a' arguments.
+#
+#############################################################################
+
+# Script usage.
+if [ $# == 0 ]
+then
+    echo 'Usage:   build <source files> [-o outputfilename] [-a arguments]' 1>&2
+    echo 'Example: build Main.cpp World.cpp -o worldSimulator -a earth' 1>&2
+    exit 1
+fi
+
+# Compiler settings.
+CC="g++"
+CC_FLAGS="-O3 -Wall -Werror -ansi -pedantic"
+PP_DEFINES="$(pcap-config --defines) $(libnet-config --defines)"
+STATIC_LIBS="-pthread $(pcap-config --libs) $(libnet-config --libs)"
+
+#
+# Parse arguments, compile, and run...
+#
+
+files=""
+outputfile="/tmp/build.out"
+deleteoutfilewhendone=1
+
+while [ -n "$1" ]
+do
+    case "$1" in
+        -o)
+            shift
+            outputfile="$1"
+            deleteoutfilewhendone=0
+            ;;
+        -a)
+            shift
+            break
+            ;;
+        *)
+            files+="$1"
+            files+=" "
+            ;;
+    esac
+    shift
+done
+
+echo 'Compiling...' 1>&2
+if $CC $CC_FLAGS $PP_DEFINES $files $STATIC_LIBS -o "$outputfile"
+then
+    echo 'Running...' 1>&2
+    "$outputfile" "$@"
+    if [ $deleteoutfilewhendone -eq 1 ]
+    then
+        rm -rf "$outputfile"
+    fi
+fi

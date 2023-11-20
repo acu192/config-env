@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# And do absolutely nothing...
+cat > /dev/null

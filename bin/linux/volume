@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# On Ubuntu, a user needs to belong to the group 'audio' in order to play sound.
+
+alsamixer
