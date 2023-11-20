@@ -129,10 +129,22 @@ neovim/nvim-lspconfig:
    - `<leader>f`: [LSP] Format code
 
 hrsh7th/nvim-cmp:
-  - TODO: I'm not going to document this until I decide how I want it.
+ - No global or buffer-level mappings are created (as far as I know)
+ - The plugin has these defaults for navagating the autocomplete floating window list:
+   - `<Down>` and `<Up>`: go down and up in the list
+   - `<C-n>` and `<C-p>`: go down and up in the list
+   - `<C-y>`: confirm selection
+   - `<C-e>`: abort
+ - I add a few more:
+   - `<C-d>` and `<C-f>`: scroll floating window's docs
+   - `<CR>`: confirm selection
+   - `<Tab>` and `<S-Tab>`: go down and up in the list; also navagate snippet jumps
+   - `<C-space>`: complete!
+
+nvim-telescope/telescope.nvim:
+ - `C-f`: Find Files
+ - `C-g`: Find Files (in Git)
+ - `<leader>g`: Grep Files
 
 TODO:
- - lsp stuff ... rust, python, js, typescript
  - quickfix
- - telescope
- - harpoon?
