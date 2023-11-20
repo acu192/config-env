@@ -55,6 +55,9 @@ require('lazy').setup({
 
   -- LSP-powered autocompletion:
   require('package/cmp-config'),
+
+  -- Fuzzy finder:
+  require('package/telescope-config'),
 }, {})
 
 -- Enable certain language-specific LSPs:
