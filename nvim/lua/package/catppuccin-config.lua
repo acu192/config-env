@@ -12,7 +12,13 @@ return {
       integrations = {
         treesitter = true,
         which_key = true,
-        -- TODO: others?
+        gitsigns = true,
+        markdown = true,
+        cmp = true,
+        nvimtree = true,
+        telescope = {
+          enabled = true,
+        },
       },
     }
   end,

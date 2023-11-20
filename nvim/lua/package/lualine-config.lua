@@ -47,7 +47,7 @@ return {
     extensions = {
       'nvim-tree',
       'lazy',
-      -- TODO: fugitive?, mason?, quickfix?
+      'quickfix',
     },
     refresh = {
       statusline = 250,

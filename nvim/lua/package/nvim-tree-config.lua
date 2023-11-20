@@ -101,7 +101,7 @@ return {
           enable = true,
         },
         icons = {
-          git_placement = "after",  -- TODO: I'd like this to be "signcolumn", but it doesn't work when the file is both staged and unstaged (you only see the staged icon, which is misleading). It would be great if there was a special icon for staged and unstaged so that this worked well in the signcolumn! Currently nvim-tree doesn't support that.
+          git_placement = "after",
           modified_placement = "after",
           diagnostics_placement = "signcolumn",
           bookmarks_placement = "signcolumn",

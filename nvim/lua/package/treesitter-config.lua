@@ -54,8 +54,5 @@ return {
         },
       },
     })
-
-    -- TODO: map keys for:
-    --   - prev/next function (maybe via `[f`, `]f`) with `nvim-treesitter/nvim-treesitter-textobjects`
   end
 }

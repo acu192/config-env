@@ -144,7 +144,3 @@ require('ryan/whitespace')
 
 -- Return to previous position in buffer:
 require('ryan/returntopos')
-
--- Highlight on yank:
--- (I decided to disable this because it was annoying me.)
---require('ryan/hlonyank')

@@ -8,5 +8,3 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     end
   end,
 })
-
--- TODO: It would be nice if the scroll (viewport or whatever its called) was also restored.
