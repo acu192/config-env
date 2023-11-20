@@ -5,6 +5,7 @@ all :
 	@echo
 	@echo '=== run as your normal user ==='
 	@echo 'make fonts'
+	@echo 'make nvim-env'
 	@echo
 
 nvim : you-must-be-root
@@ -20,7 +21,9 @@ nvim : you-must-be-root
 	rm -rf nvim-linux64.tar.gz
 
 ripgrep : you-must-be-root
+	rm -rf ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz
 	wget https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz
+	rm -rf ripgrep-13.0.0-x86_64-unknown-linux-musl
 	tar -xvzf ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz
 	cp ./ripgrep-13.0.0-x86_64-unknown-linux-musl/rg /usr/local/bin/
 	rm -rf ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz ripgrep-13.0.0-x86_64-unknown-linux-musl/
@@ -35,6 +38,7 @@ fonts : font-jetbrains font-ubuntu font-meslo
 	# Meslo is popular in the zsh community, so I'll add that one too.
 
 font-jetbrains :
+	rm -rf JetBrainsMono.zip font/
 	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip
 	unzip JetBrainsMono.zip -d font
 	# The following works on Ubuntu (not sure if it works on any other distros)...
@@ -44,6 +48,7 @@ font-jetbrains :
 	rm -rf JetBrainsMono.zip font/
 
 font-ubuntu :
+	rm -rf UbuntuMono.zip font/
 	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/UbuntuMono.zip
 	unzip UbuntuMono.zip -d font
 	# The following works on Ubuntu (not sure if it works on any other distros)...
@@ -53,6 +58,7 @@ font-ubuntu :
 	rm -rf UbuntuMono.zip font/
 
 font-meslo :
+	rm -rf Meslo.zip font/
 	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip
 	unzip Meslo.zip -d font
 	# The following works on Ubuntu (not sure if it works on any other distros)...
@@ -61,4 +67,12 @@ font-meslo :
 	fc-cache -fv
 	rm -rf Meslo.zip font/
 
-.PHONY : all nvim ripgrep you-must-be-root fonts font-jetbrains font-ubuntu font-meslo
+nvim-env :
+	rm -rf ~/.local/share/nvim/
+	rm -rf ~/.config/nvim
+	mkdir -p ~/.config
+	ln -s $(shell pwd)/nvim ~/.config/nvim
+	#nvim
+	nvim --headless "+Lazy! sync" +qa
+
+.PHONY : all nvim ripgrep you-must-be-root fonts font-jetbrains font-ubuntu font-meslo nvim-env
