@@ -8,7 +8,20 @@ This repo defines Ryan's terminal environment. It contains:
 
 ### Installation
 
-TODO
+The following should be done in all cases (i.e. on the host, in docker containers, on remote servers):
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/acu192/config-env/main/install.bash | bash
+```
+
+On the host machine, you also need to install the fonts:
+```bash
+cd fonts && make
+```
+
+Also on the host machine, you need to configure your terminal to:
+1. use one of those fonts install above,
+2. have a reasonable default color pallet, and
+3. support 24bit color.
 
 ### Neovim Custom Keymaps
 
