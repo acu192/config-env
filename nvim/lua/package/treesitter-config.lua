@@ -28,6 +28,8 @@ local parsers_to_install = {
   'terraform',
   'typescript',
   'vue',
+  'xml',
+  'yaml',
 }
 
 return {
