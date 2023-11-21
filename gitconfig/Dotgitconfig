@@ -1,0 +1,10 @@
+[push]
+    default = simple
+[credential]
+    helper = cache --timeout=604800
+[core]
+    editor = vim
+[pull]
+    rebase = false
+[safe]
+    directory = /project

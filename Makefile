@@ -2,7 +2,7 @@ help:
 	@echo '-------------- STANDARD INSTALLS --------------'
 	@echo
 	@echo 'make apt      # install system dependencies'
-	@echo 'make all      # install nvim, tmux, bash, htop'
+	@echo 'make all      # install nvim, tmux, bash, htop, gitconfig'
 	@echo
 	@echo '-------------- OPTIONAL INSTALLS --------------'
 	@echo
@@ -22,7 +22,7 @@ apt : you-must-be-root
 you-must-be-root :
 	@test $(shell id -u) = 0
 
-all : nvim tmux bash htop
+all : nvim tmux bash htop gitconfig
 
 nvim :
 	cd nvim && sudo make ripgrep
@@ -37,6 +37,9 @@ bash :
 
 htop :
 	cd htop && make
+
+gitconfig :
+	cd gitconfig && make
 
 nodejs :
 	sudo apt-get update
@@ -61,4 +64,4 @@ awscli :
 	sudo ./aws/install
 	rm -rf ./aws awscliv2.zip
 
-.PHONY : help apt you-must-be-root all nvim tmux bash htop nodejs pyright rustup awscli
+.PHONY : help apt you-must-be-root all nvim tmux bash htop gitconfig nodejs pyright rustup awscli
