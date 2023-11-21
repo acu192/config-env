@@ -1,3 +1,17 @@
+help:
+	@echo 'make apt      # install system dependencies'
+	@echo 'make all      # install nvim, tmux, bash, htop'
+
+apt : you-must-be-root
+	apt update && apt install -y \
+		sudo xsel \
+		make cmake build-essential \
+		git tmux vim htop \
+		ffmpeg unzip zip
+
+you-must-be-root :
+	@test $(shell id -u) = 0
+
 all : nvim tmux bash htop
 
 nvim :
@@ -14,14 +28,4 @@ bash :
 htop :
 	cd htop && make
 
-apt : you-must-be-root
-	apt update && apt install -y \
-		sudo xsel \
-		make cmake build-essential \
-		git tmux vim htop \
-		ffmpeg unzip zip
-
-you-must-be-root :
-	@test $(shell id -u) = 0
-
-.PHONY : all nvim tmux bash htop apt you-must-be-root
+.PHONY : help apt you-must-be-root all nvim tmux bash htop
