@@ -54,3 +54,10 @@ fi
 . /usr/share/bash-completion/completions/git
 . /usr/lib/git-core/git-sh-prompt
 export GIT_PS1_SHOWDIRTYSTATE=1
+
+# Source the conda environment.
+if [ -f /opt/conda/etc/profile.d/conda.sh ]
+then
+    . /opt/conda/etc/profile.d/conda.sh
+    conda activate base
+fi
