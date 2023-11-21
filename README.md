@@ -20,7 +20,7 @@ cd fonts && make
 
 Also on the host machine, you need to configure your terminal to:
 1. use one of those fonts install above,
-2. have a reasonable default color pallet, and
+2. have a reasonable default color palette (e.g. in gnome terminal I use "GNOME dark" as the background and "Solarized" as the palette), and
 3. support 24bit color.
 
 ### Neovim Custom Keymaps
