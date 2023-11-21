@@ -7,6 +7,7 @@ cd $HOME
 mkdir -p github
 cd github
 
+rm -rf config-env
 git clone https://github.com/acu192/config-env.git
 cd config-env
 
