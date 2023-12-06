@@ -7,6 +7,9 @@ echo "Home is:" $(pwd)
 
 # Homebrew:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+export PATH=/opt/homebrew/bin:$PATH
+
+# System dependencies:
 brew install make cmake git tmux vim htop wget curl ffmpeg unzip zip
 brew install --cask iterm2
 
