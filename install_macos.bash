@@ -14,13 +14,13 @@ brew install make cmake git tmux vim htop wget curl ffmpeg unzip zip
 brew install --cask iterm2
 
 # Ripgrep:
-brew install ripgrep@14.0.3
+brew install ripgrep
 
 # Nvim:
-brew install neovim@0.9.4
+brew install neovim
 
 # Nodejs:
-brew install node@21.3.0
+brew install node@21
 
 # Pyright:
 npm install -g pyright
