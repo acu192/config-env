@@ -5,17 +5,25 @@ This repo defines Ryan's terminal environment. It contains:
 - a [tmux](https://github.com/tmux/tmux/wiki) environment with a few plugins and some customization
 - a (simple by today's standard) bash environment
 - a collection of scripts to help with random things
+- a convenient one-line command to install various system dependencies that I always need
 
 ### Installation
 
 The following should be done in all cases (i.e. on the host, in docker containers, on remote servers):
+
+**Debian:**
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/acu192/config-env/main/install.bash | bash
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/acu192/config-env/main/install_debian.bash | bash
+```
+
+**MacOS:**
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/acu192/config-env/main/install_macos.bash | bash
 ```
 
 On the host machine, you also need to install the fonts:
 ```bash
-cd fonts && make
+cd fonts/<your-system> && make
 ```
 
 Also on the host machine, you need to configure your terminal to:
