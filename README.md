@@ -5,6 +5,7 @@ This repo defines Ryan's terminal environment. It contains:
 - a [tmux](https://github.com/tmux/tmux/wiki) environment with a few plugins and some customization
 - a (simple by today's standard) bash environment
 - a collection of scripts to help with random things
+- a convenient one-line command to install various system dependencies that I always need
 
 ### Installation
 
