@@ -67,8 +67,8 @@ cd github
 rm -rf config-env
 git clone https://github.com/acu192/config-env.git
 cd config-env
-cd nvim      && make nvim-env && cd ..
-cd tmux      && make tmux     && cd ..
-cd bash      && make          && cd ..
-cd htop      && make          && cd ..
-cd gitconfig && make          && cd ..
+cd nvim       && make nvim-env && cd ..
+cd tmux       && make tmux     && cd ..
+cd bash/linux && make          && cd ..
+cd htop       && make          && cd ..
+cd gitconfig  && make          && cd ..
