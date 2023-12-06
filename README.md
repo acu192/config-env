@@ -10,7 +10,7 @@ This repo defines Ryan's terminal environment. It contains:
 
 The following should be done in all cases (i.e. on the host, in docker containers, on remote servers):
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/acu192/config-env/main/install.bash | bash
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/acu192/config-env/main/install_debian.bash | bash
 ```
 
 On the host machine, you also need to install the fonts:

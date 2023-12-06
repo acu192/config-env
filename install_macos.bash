@@ -2,6 +2,12 @@
 
 set -ex
 
+# TODO install brew
+
+brew install make cmake git tmux vim htop wget curl ffmpeg unzip zip
+
+brew install --cask iterm2
+
 cd $HOME
 
 mkdir -p github
@@ -10,12 +16,5 @@ cd github
 rm -rf config-env
 git clone https://github.com/acu192/config-env.git
 cd config-env
-
-if [ $(id -u) = 0 ]
-then
-    make apt
-else
-    sudo make apt
-fi
 
 make all
