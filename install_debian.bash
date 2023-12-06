@@ -3,6 +3,7 @@
 set -ex
 
 cd $HOME
+echo "Home is:" $(pwd)
 
 # System dependencies:
 if [ $(id -u) = 0 ]
