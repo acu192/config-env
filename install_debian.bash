@@ -11,7 +11,7 @@ then
 else
     SUDO_PREFIX=sudo
 fi
-$SUDO_PREFIX apt update && apt install -y \
+$SUDO_PREFIX apt update && $SUDO_PREFIX apt install -y \
     sudo xsel \
     make cmake build-essential \
     git tmux vim htop wget curl \
