@@ -10,11 +10,14 @@ This repo defines Ryan's terminal environment. It contains:
 ### Installation
 
 The following should be done in all cases (i.e. on the host, in docker containers, on remote servers):
-```bash
-# Debian:
-curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/acu192/config-env/main/install_debian.bash | bash
 
-# MacOS:
+**Debian:**
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/acu192/config-env/main/install_debian.bash | bash
+```
+
+**MacOS:**
+```bash
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/acu192/config-env/main/install_macos.bash | bash
 ```
 

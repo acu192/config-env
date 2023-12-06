@@ -2,19 +2,38 @@
 
 set -ex
 
-# TODO install brew
+cd $HOME
+echo "Home is:" $(pwd)
 
+# Homebrew:
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install make cmake git tmux vim htop wget curl ffmpeg unzip zip
-
 brew install --cask iterm2
 
-cd $HOME
+# Ripgrep:
+brew install ripgrep@14.0.3
 
+# Nvim:
+brew install neovim@0.9.4
+
+# Nodejs:
+brew install node@21.3.0
+
+# Pyright:
+npm install -g pyright
+
+# Rustup:
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+bash -lc 'rustup component add rust-analyzer'
+
+# My config stuff:
 mkdir -p github
 cd github
-
 rm -rf config-env
 git clone https://github.com/acu192/config-env.git
 cd config-env
-
-make all
+cd nvim       && make nvim-env && cd ..
+cd tmux       && make tmux     && cd ..
+cd bash/macos && make          && cd ..
+cd htop       && make          && cd ..
+cd gitconfig  && make          && cd ..
