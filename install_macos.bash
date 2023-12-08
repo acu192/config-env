@@ -2,7 +2,7 @@
 
 set -ex
 
-cd $HOME
+cd $HOME/Desktop
 echo "Home is:" $(pwd)
 
 # Homebrew:
@@ -37,6 +37,6 @@ git clone https://github.com/acu192/config-env.git
 cd config-env
 cd nvim       && make nvim-env && cd ..
 cd tmux       && make tmux     && cd ..
-cd bash/macos && make          && cd ..
+cd bash/macos && make          && cd ../..
 cd htop       && make          && cd ..
 cd gitconfig  && make          && cd ..
