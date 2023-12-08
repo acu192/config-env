@@ -26,11 +26,6 @@ then
     export PATH=$PATH:~/Desktop/github/config-bin/common
 fi
 
-# Make the desktop the home directory, because the default home directory
-# has a bunch of OSX crap-folders.
-export HOME=`echo ~`/Desktop
-cd
-
 # Source the git autocomplete file.
 # See: https://git-scm.com/book/uz/v2/Git-in-Other-Environments-Git-in-Bash
 . /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
