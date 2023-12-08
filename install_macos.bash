@@ -5,6 +5,9 @@ set -ex
 cd $HOME/Desktop
 echo "Home is:" $(pwd)
 
+# Change default shell to bash:
+chsh -s /bin/bash
+
 # Homebrew:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 export PATH=/opt/homebrew/bin:$PATH
