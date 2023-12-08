@@ -17,13 +17,13 @@ alias gc='git commit'
 alias vim='nvim'
 
 # Path edits:
-if [ -d ~/Desktop/github/config-bin/osx ]
+if [ -d ~/Desktop/github/config-env/bin/osx ]
 then
-    export PATH=$PATH:~/Desktop/github/config-bin/osx
+    export PATH=$PATH:~/Desktop/github/config-env/bin/osx
 fi
-if [ -d ~/Desktop/github/config-bin/common ]
+if [ -d ~/Desktop/github/config-env/bin/common ]
 then
-    export PATH=$PATH:~/Desktop/github/config-bin/common
+    export PATH=$PATH:~/Desktop/github/config-env/bin/common
 fi
 
 # Source the git autocomplete file.
