@@ -43,3 +43,13 @@ cd tmux       && make tmux     && cd ..
 cd bash/macos && make          && cd ../..
 cd htop       && make          && cd ..
 cd gitconfig  && make          && cd ..
+
+# Anaconda
+sudo mkdir -p /opt/conda
+sudo chown $USER /opt/conda/
+wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-MacOSX-arm64.sh
+bash Anaconda3-2023.09-0-MacOSX-arm64.sh -p /opt/conda -f
+rm Anaconda3-2023.09-0-MacOSX-arm64.sh
+
+# Misc
+echo 'NOW CHANGE YOUR HOSTNAME WITH: `sudo scutil --set HostName <your-hostname>`'
