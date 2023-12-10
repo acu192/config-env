@@ -61,3 +61,6 @@ then
     . /opt/conda/etc/profile.d/conda.sh
     conda activate base
 fi
+
+# Rust
+. "$HOME/.cargo/env"
