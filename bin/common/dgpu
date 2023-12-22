@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec d "$@" --runtime=nvidia --gpus all
