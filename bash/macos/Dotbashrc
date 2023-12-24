@@ -43,7 +43,6 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 if [ -f /opt/conda/etc/profile.d/conda.sh ]
 then
     . /opt/conda/etc/profile.d/conda.sh
-    conda activate base
 fi
 
 # Add brew to path:
