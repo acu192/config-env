@@ -47,7 +47,9 @@ cd
 
 # Anaconda
 sudo mkdir -p /opt/conda
-sudo chown $USER /opt/conda/
+if [ ! -z "$USER" ]; then
+    sudo chown $USER /opt/conda/
+fi
 wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-MacOSX-arm64.sh
 bash Anaconda3-2023.09-0-MacOSX-arm64.sh -p /opt/conda -f -b
 rm Anaconda3-2023.09-0-MacOSX-arm64.sh
