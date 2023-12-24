@@ -72,3 +72,11 @@ cd tmux       && make tmux     && cd ..
 cd bash/linux && make          && cd ../..
 cd htop       && make          && cd ..
 cd gitconfig  && make          && cd ..
+cd
+
+# Anaconda
+sudo mkdir -p /opt/conda
+sudo chown $USER /opt/conda/
+wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh
+bash Anaconda3-2023.09-0-Linux-x86_64.sh -p /opt/conda -f -b
+rm Anaconda3-2023.09-0-Linux-x86_64.sh
