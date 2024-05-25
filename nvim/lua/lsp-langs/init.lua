@@ -1,8 +1,28 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- Python
+-- Python (npm install -g pyright)
 require('lspconfig').pyright.setup({
   capabilities = capabilities,
+})
+
+-- Python (pip install python-lsp-server pylsp-mypy)
+require('lspconfig').pylsp.setup({
+  capabilities = capabilities,
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          enabled = false,
+        },
+        pyflakes = {
+          enabled = false,
+        },
+        mypy = {
+          enabled = true,
+        },
+      },
+    },
+  },
 })
 
 -- JavaScript, Typescript
