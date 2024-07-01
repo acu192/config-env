@@ -23,9 +23,18 @@ vim.keymap.set({'n', 'i'}, '<leader>s', write_buffer, {silent = true, desc = 'Sa
 
 -- Other ways to quit vim:
 local quit_twice = function()
-  -- We do it twice to avoid the annoying 'E173 (n more file(s) to edit)' error message.
+  local start_n_windows = #vim.api.nvim_list_wins()
   vim.cmd('silent! q')
-  vim.cmd('silent! q')
+  local end_n_windows = #vim.api.nvim_list_wins()
+  if start_n_windows == end_n_windows then
+    -- The first :q failed, either because:
+    --  - we have unsaved changes to, or
+    --  - the annoying 'E173 (n more file(s) to edit)' error message.
+    -- So, we'll try it again. If we have unsaved changes, it will fail again.
+    -- But if it was the E173 error, then it will work this time!
+    vim.cmd('silent! q')
+    print('Unsaved changes!')
+  end
 end
 vim.keymap.set({'n', 'i'}, '<C-q>', quit_twice, {silent = true, desc = 'Quit Neovim'})
 vim.keymap.set({'n', 'i'}, '<leader>q', quit_twice, {silent = true, desc = 'Quit Neovim (also Ctrl+q)'})
