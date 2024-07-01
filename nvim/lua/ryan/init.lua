@@ -99,7 +99,7 @@ vim.o.signcolumn = 'yes'
 vim.o.colorcolumn = "80"
 
 -- Wait only 300ms until a partial command times out (default is 1000ms).
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 500
 
 -- In visual mode, have J and K move the selected lines up and down.
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
