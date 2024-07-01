@@ -19,7 +19,7 @@ local write_buffer = function()
   vim.cmd('w')
 end
 vim.keymap.set({'n', 'i'}, '<C-s>', write_buffer, {silent = true, desc = 'Save Buffer'})
-vim.keymap.set({'n', 'i'}, '<leader>s', write_buffer, {silent = true, desc = 'Save Buffer (also Ctrl+s)'})
+vim.keymap.set({'n'}, '<leader>s', write_buffer, {silent = true, desc = 'Save Buffer (also Ctrl+s)'})
 
 -- Other ways to quit vim:
 local quit_twice = function()
@@ -37,7 +37,7 @@ local quit_twice = function()
   end
 end
 vim.keymap.set({'n', 'i'}, '<C-q>', quit_twice, {silent = true, desc = 'Quit Neovim'})
-vim.keymap.set({'n', 'i'}, '<leader>q', quit_twice, {silent = true, desc = 'Quit Neovim (also Ctrl+q)'})
+vim.keymap.set({'n'}, '<leader>q', quit_twice, {silent = true, desc = 'Quit Neovim (also Ctrl+q)'})
 
 -- Clear searches when you don't want to see them anymore:
 vim.keymap.set('n', '<leader>/', ':nohlsearch<CR>', {desc = 'Clear Active Search'})
