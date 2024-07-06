@@ -28,10 +28,6 @@ brew install node@21
 # Pyright:
 npm install -g pyright
 
-# Rustup:
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-bash -lc 'rustup component add rust-analyzer'
-
 # My config stuff:
 mkdir -p github
 cd github

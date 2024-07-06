@@ -16,27 +16,8 @@ $SUDO_PREFIX apt update && $SUDO_PREFIX apt install -y \
     sudo xsel \
     make cmake build-essential \
     git tmux vim htop wget curl \
-    ffmpeg unzip zip
-
-# Ripgrep:
-rm -rf ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz
-wget https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz
-rm -rf ripgrep-13.0.0-x86_64-unknown-linux-musl
-tar -xvzf ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz
-sudo cp ./ripgrep-13.0.0-x86_64-unknown-linux-musl/rg /usr/local/bin/
-rm -rf ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz ripgrep-13.0.0-x86_64-unknown-linux-musl/
-
-# Nvim:
-rm -rf nvim-linux64.tar.gz
-wget https://github.com/neovim/neovim/releases/download/v0.9.4/nvim-linux64.tar.gz
-rm -rf nvim-linux64
-tar -xvzf nvim-linux64.tar.gz
-sudo rm -rf /usr/local/etc/nvim-linux64
-sudo mv nvim-linux64 /usr/local/etc/
-sudo rm -rf /usr/local/bin/nvim /usr/local/bin/vim
-sudo ln -s /usr/local/etc/nvim-linux64/bin/nvim /usr/local/bin/nvim
-sudo ln -s /usr/local/etc/nvim-linux64/bin/nvim /usr/local/bin/vim
-rm -rf nvim-linux64.tar.gz
+    ffmpeg unzip zip \
+    ripgrep neovim
 
 # Nodejs:
 sudo apt-get update
@@ -49,17 +30,6 @@ sudo apt-get install nodejs -y
 
 # Pyright:
 sudo npm install -g pyright
-
-# Rustup:
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-bash -lc 'rustup component add rust-analyzer'
-
-# AWS CLI:
-rm -rf ./aws awscliv2.zip
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-rm -rf ./aws awscliv2.zip
 
 # My config stuff:
 mkdir -p github
