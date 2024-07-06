@@ -46,9 +46,10 @@ sudo mkdir -p /opt/conda
 if [ ! -z "$USER" ]; then
     sudo chown $USER /opt/conda/
 fi
-wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-MacOSX-arm64.sh
-bash Anaconda3-2023.09-0-MacOSX-arm64.sh -p /opt/conda -f -b
-rm Anaconda3-2023.09-0-MacOSX-arm64.sh
+ANACONDA_VERSION="Anaconda3-2024.06-1-MacOSX-arm64.sh"
+wget "https://repo.anaconda.com/archive/$ANACONDA_VERSION"
+bash "$ANACONDA_VERSION" -p /opt/conda -f -b
+rm "$ANACONDA_VERSION"
 
 # Misc
 echo 'NOW CHANGE YOUR HOSTNAME WITH: `sudo scutil --set HostName <your-hostname>`'

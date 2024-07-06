@@ -45,10 +45,20 @@ cd gitconfig  && make          && cd ..
 cd
 
 # Anaconda
-sudo mkdir -p /opt/conda
-if [ ! -z "$USER" ]; then
-    sudo chown $USER /opt/conda/
+ARCH_STR=`uname -m`
+if [ "$ARCH_STR" == "x86_64" ]; then
+    ANACONDA_VERSION="Anaconda3-2024.06-1-Linux-x86_64.sh"
+elif [ "$ARCH_STR" == "aarch64" ]; then
+    ANACONDA_VERSION="Anaconda3-2024.06-1-Linux-aarch64.sh"
+else
+    echo "Skipping Anaconda install: unknown platform arch: $ARCH_STR"
 fi
-wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh
-bash Anaconda3-2023.09-0-Linux-x86_64.sh -p /opt/conda -f -b
-rm Anaconda3-2023.09-0-Linux-x86_64.sh
+if [ ! -z "$ANACONDA_VERSION" ]; then
+    sudo mkdir -p /opt/conda
+    if [ ! -z "$USER" ]; then
+        sudo chown $USER /opt/conda/
+    fi
+    wget "https://repo.anaconda.com/archive/$ANACONDA_VERSION"
+    bash "$ANACONDA_VERSION" -p /opt/conda -f -b
+    rm "$ANACONDA_VERSION"
+fi
