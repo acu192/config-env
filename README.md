@@ -13,12 +13,12 @@ The following should be done in all cases (i.e. on the host, in docker container
 
 **Debian:**
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/acu192/config-env/main/install_debian.bash | bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/acu192/config-env/main/install_debian.bash)"
 ```
 
 **MacOS:**
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/acu192/config-env/main/install_macos.bash | bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/acu192/config-env/main/install_macos.bash)"
 ```
 
 On the host machine, you also need to install the fonts:
