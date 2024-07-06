@@ -43,6 +43,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 if [ -f /opt/conda/etc/profile.d/conda.sh ]
 then
     . /opt/conda/etc/profile.d/conda.sh
+    conda activate base
 fi
 
 # Add brew to path:
@@ -50,6 +51,3 @@ if [ -d /opt/homebrew/bin ]
 then
     export PATH=/opt/homebrew/bin:$PATH
 fi
-
-# Rust
-. "$HOME/.cargo/env"

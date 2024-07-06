@@ -59,7 +59,5 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 if [ -f /opt/conda/etc/profile.d/conda.sh ]
 then
     . /opt/conda/etc/profile.d/conda.sh
+    conda activate base
 fi
-
-# Rust
-. "$HOME/.cargo/env"
