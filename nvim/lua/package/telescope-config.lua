@@ -65,9 +65,10 @@ return {
 
     pcall(telescope.load_extension, 'fzf')
 
-    vim.keymap.set('n', '<C-f>', builtin.find_files, {desc = 'Find Files'})
-    vim.keymap.set('n', '<C-g>', builtin.git_files, {desc = 'Find Files (in Git)'})
-    vim.keymap.set('n', '<leader>g', builtin.live_grep, {desc = 'Grep Files'})
+    vim.keymap.set('n', '<C-f>', builtin.find_files, {desc = 'Find Files (in CWD)'})
+    vim.keymap.set('n', '<C-g>', builtin.git_files, {desc = 'Find Files (in Git root)'})
+    vim.keymap.set('n', '<leader>g', builtin.live_grep, {desc = 'Live Grep Files (in CWD)'})
+    vim.keymap.set('n', '<leader>*', builtin.grep_string, {desc = 'Search Selection'})
     vim.keymap.set('n', '<leader>D', builtin.diagnostics, {desc = 'List Diagnostics'})
   end,
 }

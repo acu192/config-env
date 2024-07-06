@@ -155,9 +155,10 @@ Also on the host machine, you need to configure your terminal to:
    - `<C-space>`: complete!
 
 **nvim-telescope/telescope.nvim:**
- - `C-f`: Find Files
- - `C-g`: Find Files (in Git)
- - `<leader>g`: Grep Files
+ - `C-f`: Find Files (in CWD)
+ - `C-g`: Find Files (in Git root)
+ - `<leader>g`: Live Grep Files (in CWD)
+ - `<leader>*`: Search Selection
  - `<leader>D`: List Diagnostics
  - `<CR>`: (if not using multi-selections) open single selection; (if using multi-selections) open all selected
  - `<M-CR>`: open all buffers shown in the filtered list
