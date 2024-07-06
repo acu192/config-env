@@ -22,5 +22,6 @@ return {
     vim.keymap.set('n', '<C-f>', builtin.find_files, {desc = 'Find Files'})
     vim.keymap.set('n', '<C-g>', builtin.git_files, {desc = 'Find Files (in Git)'})
     vim.keymap.set('n', '<leader>g', builtin.live_grep, {desc = 'Grep Files'})
+    vim.keymap.set('n', '<leader>D', builtin.diagnostics, {desc = 'List Diagnostics'})
   end,
 }

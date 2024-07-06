@@ -150,7 +150,6 @@ Also on the host machine, you need to configure your terminal to:
    - `<C-y>`: confirm selection
    - `<C-e>`: abort
  - I add a few more:
-   - `<C-d>` and `<C-f>`: scroll floating window's docs
    - `<CR>`: confirm selection
    - `<Tab>` and `<S-Tab>`: go down and up in the list; also navigate snippet jumps
    - `<C-space>`: complete!
@@ -159,6 +158,7 @@ Also on the host machine, you need to configure your terminal to:
  - `C-f`: Find Files
  - `C-g`: Find Files (in Git)
  - `<leader>g`: Grep Files
+ - `<leader>D`: List Diagnostics
 
 TODO:
  - quickfix
