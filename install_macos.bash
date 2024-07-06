@@ -28,6 +28,16 @@ brew install node@21
 # Pyright:
 npm install -g pyright
 
+# Anaconda
+sudo mkdir -p /opt/conda
+if [ ! -z "$USER" ]; then
+    sudo chown $USER /opt/conda/
+fi
+ANACONDA_VERSION="Anaconda3-2024.06-1-MacOSX-arm64.sh"
+wget "https://repo.anaconda.com/archive/$ANACONDA_VERSION"
+bash "$ANACONDA_VERSION" -p /opt/conda -f -b
+rm "$ANACONDA_VERSION"
+
 # My config stuff:
 mkdir -p github
 cd github
@@ -39,17 +49,8 @@ cd tmux       && make tmux     && cd ..
 cd bash/macos && make          && cd ../..
 cd htop       && make          && cd ..
 cd gitconfig  && make          && cd ..
+cd pythondeps && make          && cd ..
 cd
-
-# Anaconda
-sudo mkdir -p /opt/conda
-if [ ! -z "$USER" ]; then
-    sudo chown $USER /opt/conda/
-fi
-ANACONDA_VERSION="Anaconda3-2024.06-1-MacOSX-arm64.sh"
-wget "https://repo.anaconda.com/archive/$ANACONDA_VERSION"
-bash "$ANACONDA_VERSION" -p /opt/conda -f -b
-rm "$ANACONDA_VERSION"
 
 # Misc
 echo 'NOW CHANGE YOUR HOSTNAME WITH: `sudo scutil --set HostName <your-hostname>`'

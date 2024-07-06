@@ -31,19 +31,6 @@ sudo apt-get install nodejs -y
 # Pyright:
 sudo npm install -g pyright
 
-# My config stuff:
-mkdir -p github
-cd github
-rm -rf config-env
-git clone https://github.com/acu192/config-env.git
-cd config-env
-cd nvim       && make nvim-env && cd ..
-cd tmux       && make tmux     && cd ..
-cd bash/linux && make          && cd ../..
-cd htop       && make          && cd ..
-cd gitconfig  && make          && cd ..
-cd
-
 # Anaconda
 ARCH_STR=`uname -m`
 if [ "$ARCH_STR" == "x86_64" ]; then
@@ -62,3 +49,17 @@ if [ ! -z "$ANACONDA_VERSION" ]; then
     bash "$ANACONDA_VERSION" -p /opt/conda -f -b
     rm "$ANACONDA_VERSION"
 fi
+
+# My config stuff:
+mkdir -p github
+cd github
+rm -rf config-env
+git clone https://github.com/acu192/config-env.git
+cd config-env
+cd nvim       && make nvim-env && cd ..
+cd tmux       && make tmux     && cd ..
+cd bash/linux && make          && cd ../..
+cd htop       && make          && cd ..
+cd gitconfig  && make          && cd ..
+cd pythondeps && make          && cd ..
+cd
