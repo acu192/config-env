@@ -34,9 +34,9 @@ sudo npm install -g pyright
 # Anaconda
 ARCH_STR=`uname -m`
 if [ "$ARCH_STR" == "x86_64" ]; then
-    ANACONDA_VERSION="Anaconda3-2024.06-1-Linux-x86_64.sh"
+    ANACONDA_VERSION="Anaconda3-2024.02-1-Linux-x86_64.sh"
 elif [ "$ARCH_STR" == "aarch64" ]; then
-    ANACONDA_VERSION="Anaconda3-2024.06-1-Linux-aarch64.sh"
+    ANACONDA_VERSION="Anaconda3-2024.02-1-Linux-aarch64.sh"
 else
     echo "Skipping Anaconda install: unknown platform arch: $ARCH_STR"
 fi
