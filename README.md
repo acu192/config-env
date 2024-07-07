@@ -1,6 +1,6 @@
 # Ryan's Environment
 
-This repo defines Ryan's terminal environment. It contains:
+This repo defines Ryan's (_personal_, _public_) terminal environment. It contains:
 - a [Neovim](https://github.com/neovim/neovim) environment with tons of plugins and customization
 - a [tmux](https://github.com/tmux/tmux/wiki) environment with a few plugins and some customization
 - a (simple by today's standard) bash environment
