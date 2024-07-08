@@ -1,6 +1,7 @@
 install :
 	pip3 install \
-		python-lsp-server pylsp-mypy \
+		python-lsp-server pylsp-mypy mypy \
+		pytest pytest-asyncio \
 		boto3 pyathena s3fs pyarrow \
 		geopandas h3pandas \
 		folium contextily \
