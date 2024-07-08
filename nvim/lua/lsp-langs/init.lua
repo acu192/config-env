@@ -5,7 +5,7 @@ require('lspconfig').pyright.setup({
   capabilities = capabilities,
 })
 
--- Python (pip install python-lsp-server pylsp-mypy)
+-- Python (pip3 install python-lsp-server pylsp-mypy)
 require('lspconfig').pylsp.setup({
   capabilities = capabilities,
   settings = {

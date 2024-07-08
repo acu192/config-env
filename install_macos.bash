@@ -13,7 +13,7 @@ chsh -s /bin/bash
 export PATH=/opt/homebrew/bin:$PATH
 
 # System dependencies:
-brew install make cmake git tmux vim htop wget curl ffmpeg unzip zip
+brew install make cmake git tmux vim htop wget curl ffmpeg unzip zip python@3.12
 brew install --cask iterm2
 
 # Ripgrep:
@@ -27,16 +27,6 @@ brew install node@21
 
 # Pyright:
 npm install -g pyright
-
-# Anaconda
-sudo mkdir -p /opt/conda
-if [ ! -z "$USER" ]; then
-    sudo chown $USER /opt/conda/
-fi
-ANACONDA_VERSION="Anaconda3-2024.02-1-MacOSX-arm64.sh"
-wget "https://repo.anaconda.com/archive/$ANACONDA_VERSION"
-bash "$ANACONDA_VERSION" -p /opt/conda -f -b
-rm "$ANACONDA_VERSION"
 
 # My config stuff:
 mkdir -p github

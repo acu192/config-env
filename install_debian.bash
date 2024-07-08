@@ -17,7 +17,8 @@ $SUDO_PREFIX apt update && $SUDO_PREFIX apt install -y \
     make cmake build-essential \
     git tmux vim htop wget curl \
     ffmpeg unzip zip \
-    ripgrep neovim
+    ripgrep neovim \
+    python3 python-is-python3 python3-pip python3-opencv
 
 # Nodejs:
 sudo apt-get update
@@ -30,25 +31,6 @@ sudo apt-get install nodejs -y
 
 # Pyright:
 sudo npm install -g pyright
-
-# Anaconda
-ARCH_STR=`uname -m`
-if [ "$ARCH_STR" == "x86_64" ]; then
-    ANACONDA_VERSION="Anaconda3-2024.02-1-Linux-x86_64.sh"
-elif [ "$ARCH_STR" == "aarch64" ]; then
-    ANACONDA_VERSION="Anaconda3-2024.02-1-Linux-aarch64.sh"
-else
-    echo "Skipping Anaconda install: unknown platform arch: $ARCH_STR"
-fi
-if [ ! -z "$ANACONDA_VERSION" ]; then
-    sudo mkdir -p /opt/conda
-    if [ ! -z "$USER" ]; then
-        sudo chown $USER /opt/conda/
-    fi
-    wget "https://repo.anaconda.com/archive/$ANACONDA_VERSION"
-    bash "$ANACONDA_VERSION" -p /opt/conda -f -b
-    rm "$ANACONDA_VERSION"
-fi
 
 # My config stuff:
 mkdir -p github
