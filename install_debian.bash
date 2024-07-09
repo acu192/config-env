@@ -12,7 +12,8 @@ then
 else
     SUDO_PREFIX=sudo
 fi
-$SUDO_PREFIX apt update && $SUDO_PREFIX apt install -y \
+$SUDO_PREFIX apt update
+$SUDO_PREFIX apt install -y \
     sudo xsel \
     make cmake build-essential \
     git tmux vim htop wget curl \
@@ -38,10 +39,10 @@ cd github
 rm -rf config-env
 git clone https://github.com/acu192/config-env.git
 cd config-env
-cd nvim       && make nvim-env && cd ..
-cd tmux       && make tmux     && cd ..
-cd bash/linux && make          && cd ../..
-cd htop       && make          && cd ..
-cd gitconfig  && make          && cd ..
-cd pythondeps && make          && cd ..
+cd nvim       && make nvim-env && cd ..    || exit 1
+cd tmux       && make tmux     && cd ..    || exit 1
+cd bash/linux && make          && cd ../.. || exit 1
+cd htop       && make          && cd ..    || exit 1
+cd gitconfig  && make          && cd ..    || exit 1
+cd pythondeps && make          && cd ..    || exit 1
 cd

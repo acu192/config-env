@@ -34,12 +34,12 @@ cd github
 rm -rf config-env
 git clone https://github.com/acu192/config-env.git
 cd config-env
-cd nvim       && make nvim-env && cd ..
-cd tmux       && make tmux     && cd ..
-cd bash/macos && make          && cd ../..
-cd htop       && make          && cd ..
-cd gitconfig  && make          && cd ..
-cd pythondeps && make          && cd ..
+cd nvim       && make nvim-env && cd ..    || exit 1
+cd tmux       && make tmux     && cd ..    || exit 1
+cd bash/macos && make          && cd ../.. || exit 1
+cd htop       && make          && cd ..    || exit 1
+cd gitconfig  && make          && cd ..    || exit 1
+cd pythondeps && make          && cd ..    || exit 1
 cd
 
 # Misc
