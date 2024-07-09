@@ -55,9 +55,8 @@ fi
 . /usr/lib/git-core/git-sh-prompt
 export GIT_PS1_SHOWDIRTYSTATE=1
 
-# Source the conda environment.
-if [ -f /opt/conda/etc/profile.d/conda.sh ]
+# Source the python virtual environment:
+if [ -f /venv/base/bin/activate ]
 then
-    . /opt/conda/etc/profile.d/conda.sh
-    conda activate base
+    source /venv/base/bin/activate
 fi

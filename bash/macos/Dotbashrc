@@ -39,11 +39,10 @@ export PS2='\[\033[01;32m\]>\[\033[00m\] '
 # MacOS wants `zsh` to be your shell. We can silence the warning it gives us:
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# Source the conda environment.
-if [ -f /opt/conda/etc/profile.d/conda.sh ]
+# Source the python virtual environment:
+if [ -f /venv/base/bin/activate ]
 then
-    . /opt/conda/etc/profile.d/conda.sh
-    conda activate base
+    source /venv/base/bin/activate
 fi
 
 # Add brew to path:
