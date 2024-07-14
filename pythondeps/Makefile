@@ -7,6 +7,7 @@ install :
 		folium contextily \
 		moviepy \
 		jupyterlab \
-		numpy pandas matplotlib
+		numpy pandas matplotlib \
+		aiohttp[speedups] python-dotenv colorama 
 
 .PHONY : install
