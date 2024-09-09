@@ -43,6 +43,9 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 if [ -f /venv/base/bin/activate ]
 then
     source /venv/base/bin/activate
+elif [ -f ~/.venv/base/bin/activate ]
+then
+    source ~/.venv/base/bin/activate
 fi
 
 # Add brew to path:

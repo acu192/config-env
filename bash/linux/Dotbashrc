@@ -59,4 +59,7 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 if [ -f /venv/base/bin/activate ]
 then
     source /venv/base/bin/activate
+elif [ -f ~/.venv/base/bin/activate ]
+then
+    source ~/.venv/base/bin/activate
 fi
