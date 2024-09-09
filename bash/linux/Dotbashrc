@@ -39,6 +39,7 @@ alias mv='mv -i'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
+alias vim='nvim'
 
 # Path edits.
 if [ -d ~/github/config-env/bin/linux ]
