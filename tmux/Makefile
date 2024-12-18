@@ -1,6 +1,8 @@
 tmux :
 	rm -rf ~/.tmux/plugins/tpm ~/.config/tmux/plugins
 	mkdir -p ~/.tmux/plugins
+	mkdir -p ~/.config/tmux/plugins/catppuccin
+	git clone https://github.com/acu192/fork-catppuccin-tmux.git ~/.config/tmux/plugins/catppuccin/tmux
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	rm -rf ~/.config/tmux/tmux.conf ~/.tmux.conf
 	mkdir -p ~/.config/tmux

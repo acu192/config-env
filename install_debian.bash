@@ -18,6 +18,7 @@ $SUDO_PREFIX apt install -y \
     make cmake build-essential \
     git tmux vim htop wget curl \
     ffmpeg unzip zip \
+    lm-sensors sysstat \
     ripgrep neovim \
     python3 python3-full python3-doc python3-dev python-is-python3 python3-pip python3-opencv
 
