@@ -7,9 +7,10 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- The <Colon> is too hard to type. I'll remap <Space> for this.
--- Also remap the <Colon> to <Nop> to try to train myself to stop using it!
+-- Also remap the <Colon> to noop to try to train myself to stop using it!
 vim.keymap.set({ 'n', 'v' }, '<Space>', ':', {desc = 'Mapped to <Colon>'})
-vim.keymap.set({ 'n', 'v' }, ':', '<Nop>', {desc = 'Stop using this! Use <Space> instead!'})
+local noop = function() end
+vim.keymap.set({ 'n' }, ':', noop, {silent = true, desc = 'Stop using this! Use <Space> instead!'})
 
 -- <ESC> is too far away. I'll use 'jj'.
 vim.keymap.set('i', 'jj', '<ESC>', {desc = 'Mapped to <ESC>'})
