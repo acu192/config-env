@@ -37,10 +37,9 @@ cd config-env
 cd nvim       && make nvim-env && cd ..    || exit 1
 cd tmux       && make tmux     && cd ..    || exit 1
 cd bash/macos && make          && cd ../.. || exit 1
-cd htop       && make          && cd ..    || exit 1
 cd gitconfig  && make          && cd ..    || exit 1
 cd pythondeps && make          && cd ..    || exit 1
-cd
+cd ../..
 
-# Misc
+# Misc:
 echo 'NOW CHANGE YOUR HOSTNAME WITH: `sudo scutil --set HostName <your-hostname>`'
