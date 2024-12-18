@@ -12,8 +12,6 @@ alias lw='ls | wc -l'
 alias rm='rm -i'
 alias mv='mv -i'
 alias gs='git status'
-alias ga='git add'
-alias gc='git commit'
 alias vim='nvim'
 
 # Path edits:
