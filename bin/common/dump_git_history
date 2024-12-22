@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+
+"""
+Dump git history into txt files!
+"""
+
+import argparse
+import subprocess
+import os
+
+
+def main(output_dir: str):
+    os.makedirs(output_dir, exist_ok=True)
+
+    commit_hashes = subprocess.check_output(["git", "rev-list", "--all"], text=True).strip().split('\n')
+
+    for commit_hash in commit_hashes:
+        file_path = os.path.join(output_dir, f"{commit_hash}.txt")
+        commit_diff = subprocess.check_output(["git", "show", "--pretty=format:%B%n%H", commit_hash], text=False)
+        with open(file_path, "wb") as f:
+            f.write(commit_diff)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description="Dump the entire git history to text (.txt) files!",
+    )
+    parser.add_argument(
+        'output_dir',
+        type=str,
+        help='The directory in which to output the git history.',
+    )
+    args = parser.parse_args()
+    main(args.output_dir)
