@@ -1,6 +1,7 @@
 install :
 	pip3 install \
 		python-lsp-server pylsp-mypy mypy \
+		pyright \
 		pytest pytest-asyncio \
 		hatch \
 		jupyterlab \

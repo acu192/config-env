@@ -25,9 +25,6 @@ brew install neovim
 # Nodejs:
 brew install node@21
 
-# Pyright:
-npm install -g pyright
-
 # My config stuff:
 mkdir -p github
 cd github

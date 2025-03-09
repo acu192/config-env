@@ -35,9 +35,6 @@ echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.co
 sudo apt update
 sudo apt install -y nodejs
 
-# Pyright:
-sudo npm install -g pyright
-
 # My config stuff:
 mkdir -p github
 cd github
