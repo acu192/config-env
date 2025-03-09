@@ -28,7 +28,7 @@ then
         --mount type=bind,source=$(pwd),target=/project \
         --name "$PROJNAME" \
         "$@" \
-	"ryan-docker-$IMAGE_SUFFIX_$(id -u)_$(id -g):latest"
+	"ryan-docker-${IMAGE_SUFFIX}_$(id -u)_$(id -g):latest"
 else
     exec sudo docker exec -it "$PROJNAME" /bin/bash
 fi
