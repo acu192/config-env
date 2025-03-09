@@ -54,11 +54,14 @@ fi
 . /usr/lib/git-core/git-sh-prompt
 export GIT_PS1_SHOWDIRTYSTATE=1
 
-# Source the python virtual environment:
-if [ -f /venv/base/bin/activate ]
+# Source the python virtual environment (only if *inside* tmux):
+if [ -n "$TMUX" ]
 then
-    source /venv/base/bin/activate
-elif [ -f ~/.venv/base/bin/activate ]
-then
-    source ~/.venv/base/bin/activate
+    if [ -f /venv/base/bin/activate ]
+    then
+        source /venv/base/bin/activate
+    elif [ -f ~/.venv/base/bin/activate ]
+    then
+        source ~/.venv/base/bin/activate
+    fi
 fi

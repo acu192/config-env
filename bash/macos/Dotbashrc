@@ -37,13 +37,16 @@ export PS2='\[\033[01;32m\]>\[\033[00m\] '
 # MacOS wants `zsh` to be your shell. We can silence the warning it gives us:
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# Source the python virtual environment:
-if [ -f /venv/base/bin/activate ]
+# Source the python virtual environment (only if *inside* tmux):
+if [ -n "$TMUX" ]
 then
-    source /venv/base/bin/activate
-elif [ -f ~/.venv/base/bin/activate ]
-then
-    source ~/.venv/base/bin/activate
+    if [ -f /venv/base/bin/activate ]
+    then
+        source /venv/base/bin/activate
+    elif [ -f ~/.venv/base/bin/activate ]
+    then
+        source ~/.venv/base/bin/activate
+    fi
 fi
 
 # Add brew to path:
