@@ -13,7 +13,7 @@ PROJNAME="$(basename $(pwd))-$IMAGE_SUFFIX"
 
 ALREADY_RUNNING=0
 
-for i in $(docker ps --format '{{.Names}}')
+for i in $(sudo docker ps --format '{{.Names}}')
 do
     if [ "$i" = "$PROJNAME" ]
     then
@@ -23,13 +23,13 @@ done
 
 if [ "$ALREADY_RUNNING" = 0 ]
 then
-    exec docker run \
+    exec sudo docker run \
         -it --rm \
         --mount type=bind,source=$(pwd),target=/project \
         --name "$PROJNAME" \
         "$@" \
-        "ryan-docker-$IMAGE_SUFFIX:latest"
+	"ryan-docker-$IMAGE_SUFFIX_$(id -u)_$(id -g):latest"
 else
-    exec docker exec -it "$PROJNAME" /bin/bash
+    exec sudo docker exec -it "$PROJNAME" /bin/bash
 fi
 
