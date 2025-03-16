@@ -9,7 +9,7 @@ then
     exit 1
 fi
 
-PROJNAME="$(basename $(pwd))-$IMAGE_SUFFIX"
+PROJNAME="$(basename $(pwd))-${IMAGE_SUFFIX}_$(id -u)_$(id -g)"
 
 ALREADY_RUNNING=0
 
