@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+
+"""
+Generate a hex value of a specific number of bytes.
+"""
+
+import argparse
+import secrets
+
+
+if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser(description="Generate a hex value of a specific number of bytes (4 bytes by default).")
+    parser.add_argument('-l', '--length', type=int, default=4,
+                        help='number of bytes (default 4)')
+    args = parser.parse_args()
+
+    hex_value = secrets.token_hex(args.length)
+    print(hex_value)
