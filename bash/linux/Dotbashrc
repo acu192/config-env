@@ -65,3 +65,12 @@ then
         source ~/.venv/base/bin/activate
     fi
 fi
+
+# Claude Code is here.
+export PATH="$HOME/.local/bin:$PATH"
+
+# Rust.
+if [ -f "$HOME/.cargo/env" ]
+then
+    . "$HOME/.cargo/env"
+fi
